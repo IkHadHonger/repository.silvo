@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<addon id="skin.aeon.nox.silvo" version="11.0.0~beta6" name="Aeon Nox: SiLVO" provider-name="SiLVO">
+<?xml version='1.0' encoding='UTF-8'?>
+<addon id="skin.aeon.nox.silvo" version="11.0.0.6" name="Aeon Nox: SiLVO" provider-name="SiLVO">
 	<requires>
 		<import addon="xbmc.gui" version="5.18.0" />
 		<import addon="script.skinshortcuts" version="3.0.2" />
@@ -10,7 +10,7 @@
 	</requires>
 	<extension point="xbmc.gui.skin" debugging="false">
 		<res width="1920" height="1080" aspect="16:9" default="true" folder="16x9" />
-		<!-- <res width="1920" height="1080" aspect="16:9" default="true" folder="xml" /> -->
+		
 	</extension>
 	<extension point="xbmc.addon.metadata">
 		<platform>all</platform>
@@ -108,12 +108,12 @@
 		<summary lang="sk_SK">Vytvoril BigNoid, Upravil SiLVO, miniaplikácie vytvoril Mr. V</summary>
 		<summary lang="sv_SE">Created by BigNoid, Modded by SiLVO, and Widgets by Mr. V</summary>
 		<summary lang="th_TH">Created by BigNoid, Modded by SiLVO, and Widgets by Mr. V</summary>
-		<summary lang="tr_TR">BigNoid tarafından oluşturuldu; Modlar SILVO&apos;dan, Widget&apos;lar Mr. V&apos;den.</summary>
+		<summary lang="tr_TR">BigNoid tarafından oluşturuldu; Modlar SILVO'dan, Widget'lar Mr. V'den.</summary>
 		<summary lang="uk_UA">Автор: BigNoid, модифікації: SiLVO, віджети: Mr. V</summary>
 		<summary lang="vi_VN">Created by BigNoid, Modded by SiLVO, and Widgets by Mr. V - Sự trở về</summary>
 		<summary lang="zh_CN">由 BigNoid 原创制作，SiLVO 负责改版优化，小组件由 Mr. V 开发</summary>
 		<summary lang="zh_TW">由BigNoid原創，SiLVO進行改造，以及由Mr. V製作的小工具</summary>
-		<description lang="af_ZA">Heeltemal oor ontwerp om &apos;n moderne aansig te skep, terwyl die klassieke Aeon gevoel behou word.</description>
+		<description lang="af_ZA">Heeltemal oor ontwerp om 'n moderne aansig te skep, terwyl die klassieke Aeon gevoel behou word.</description>
 		<description lang="cs_CZ">Kompletně přepracováno pro moderní vzhled při zachování klasického stylu Aeon.</description>
 		<description lang="de_DE">Komplett neu designed für ein modernes Aussehen und das klassische Aeon-Feeling beizubehalten.</description>
 		<description lang="el_GR">Πλήρως επανασχεδιασμένο για να προσφέρει μια μοντέρνα αισθητική, διατηρώντας ταυτόχρονα την κλασική ομορφιά του Aeon.</description>
@@ -125,7 +125,7 @@
 		<description lang="et_EE">Täielikult uuesti disainitud, et luua tänapäevane välimus samas säilitades klassikaline Aeoni tunnetus.</description>
 		<description lang="fi_FI">Täysin uudelleensuunniteltu moderni ulkoasu, kuitenkin tuntuen klassiselta Aeonilta.</description>
 		<description lang="fr_CA">Complètement remanié pour créer une apparence moderne, tout en conservant l’esprit classique d’Aeon.</description>
-		<description lang="fr_FR">Totalement revu pour créer un look moderne, en gardant l&apos;expérience Aeon.</description>
+		<description lang="fr_FR">Totalement revu pour créer un look moderne, en gardant l'expérience Aeon.</description>
 		<description lang="gl_ES">Redeseñado completamente para crear unha aparencia moderna ao tempo que mantén a sensación do clásico Aeon.</description>
 		<description lang="he_IL">עיצוב חדש היוצר מראה מודרני אך משמר את ההרגשה של Aeon הקלאסי.</description>
 		<description lang="hr_HR">Potpuno preoblikovan moderan izgled, uz zadržani klasični Aeon osjećaj.</description>
