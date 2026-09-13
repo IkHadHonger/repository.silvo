@@ -155,8 +155,8 @@ class RepoGenerator:
         entries = []
         for channel in channels:
             entries.append(f"{channel}/")
-        if Path('repository.silvo').is_dir():
-            entries.append("repository.silvo/")
+        if Path('repository.ikhadhonger').is_dir():
+            entries.append("repository.ikhadhonger/")
 
         links = '\n'.join(f'<a href="{e}">{e}</a>' for e in sorted(entries))
         hidden_block = f'''<!-- Hidden directory listing for Kodi file manager -->
@@ -184,8 +184,8 @@ class RepoGenerator:
         index_path.write_text(content, encoding='utf-8')
         print(f"  Updated: {index_path} (injected {len(entries)} hidden links)")
 
-        # Also generate index for repository.silvo folder
-        repo_path = Path('repository.silvo')
+        # Also generate index for repository.ikhadhonger folder
+        repo_path = Path('repository.ikhadhonger')
         if repo_path.is_dir():
             self._generate_addon_index(repo_path)
 
