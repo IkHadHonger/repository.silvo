@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="repository.ikhadhonger.avdvplus"
+       name="IkHadHonger AVDVPlus Repository"
+       version="1.0.0"
+       provider-name="IkHadHonger">
+  <extension point="xbmc.addon.repository"
+             name="IkHadHonger AVDVPlus Repository">
+    <dir>
+      <info compressed="false">https://raw.githubusercontent.com/IkHadHonger/repository.silvo/avdvplus-custom/avdvplus/addons.xml</info>
+      <checksum>https://raw.githubusercontent.com/IkHadHonger/repository.silvo/avdvplus-custom/avdvplus/addons.xml.md5</checksum>
+      <datadir zip="true">https://raw.githubusercontent.com/IkHadHonger/repository.silvo/avdvplus-custom/avdvplus/</datadir>
+    </dir>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en_GB">Dedicated repository for the AVDVPlus Kodi build</summary>
+    <description lang="en_GB">Provides AVDVPlus-compatible Jellyfin and skin updates from an isolated repository branch.</description>
+    <platform>all</platform>
+  </extension>
+</addon>
