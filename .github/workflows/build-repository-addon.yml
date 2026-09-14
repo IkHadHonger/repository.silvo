@@ -2,6 +2,13 @@ name: Build IkHadHonger repository addon
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - cube-custom
+    paths:
+      - "repository.ikhadhonger/addon.xml"
+      - "repository.ikhadhonger/icon.png"
+      - "repository.ikhadhonger/fanart.jpg"
 
 permissions:
   contents: write
