@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addon id="repository.ikhadhonger"
        name="IkHadHonger Kodi Repository"
-       version="1.0.2"
+       version="1.0.3"
        provider-name="IkHadHonger">
 
     <extension point="xbmc.addon.repository"
@@ -16,9 +16,9 @@
 
         <!-- Kodi 21 / AVDVPlus -->
         <dir minversion="21.0.0" maxversion="21.8.99">
-            <info compressed="false">https://raw.githubusercontent.com/IkHadHonger/repository.silvo/cube-custom/avdvplus/addons.xml</info>
-            <checksum>https://raw.githubusercontent.com/IkHadHonger/repository.silvo/cube-custom/avdvplus/addons.xml.md5</checksum>
-            <datadir zip="true">https://raw.githubusercontent.com/IkHadHonger/repository.silvo/cube-custom/avdvplus/</datadir>
+            <info compressed="false">https://raw.githubusercontent.com/IkHadHonger/repository.silvo/avdvplus-custom/avdvplus/addons.xml</info>
+            <checksum>https://raw.githubusercontent.com/IkHadHonger/repository.silvo/avdvplus-custom/avdvplus/addons.xml.md5</checksum>
+            <datadir zip="true">https://raw.githubusercontent.com/IkHadHonger/repository.silvo/avdvplus-custom/avdvplus/</datadir>
         </dir>
 
     </extension>
