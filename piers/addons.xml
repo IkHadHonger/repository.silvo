@@ -391,4 +391,24 @@ CI &amp; build changes
 		<description lang="zh_TW">完全的翻新設計以創造現代化的視覺感受，同時仍維持Aeon的經典外觀。</description>
 	</extension>
 </addon>
+<addon id="plugin.audio.radiode" name="Radio.de" provider-name="fivebanger" version="1.1.14">
+  <requires>
+    <import addon="xbmc.python" version="3.0.0" />
+    <import addon="script.module.requests" version="2.18.4" />
+  </requires>
+  <extension library="addon.py" point="xbmc.python.pluginsource">
+    <provides>audio</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <license>GPL-2.0</license>
+    <platform>all</platform>
+    <summary lang="en">Online radio and podcasts</summary>
+    <description>Add-on to access broadcast streams provided by Radio.de.</description>
+    <disclaimer>This add-on is not endorsed, certified or otherwise approved in any way by Radio.de. Use at your own risk.</disclaimer>
+    <assets>
+      <icon>icon.png</icon>
+      <fanart>fanart.jpg</fanart>
+    </assets>
+  </extension>
+</addon>
 </addons>
