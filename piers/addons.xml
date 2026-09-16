@@ -1,6 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addons>
-<addon id="plugin.video.jellyfin" name="Jellyfin" version="2.1.0.5+py3" provider-name="Jellyfin Contributors">
+<addon id="plugin.audio.radiode" name="Radio.de" provider-name="fivebanger" version="1.1.14">
+  <requires>
+    <import addon="xbmc.python" version="3.0.0" />
+    <import addon="script.module.requests" version="2.18.4"/>
+  </requires>
+  <extension library="addon.py" point="xbmc.python.pluginsource">
+    <provides>audio</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <license>GPL-2.0</license>
+    <platform>all</platform>
+    <summary lang="en">Online radio and podcasts</summary>
+    <description>Add-on to access broadcast streams provided by Radio.de.</description>
+    <disclaimer>This add-on is not endorsed, certified or otherwise approved in any way by Radio.de. Use at your own risk.</disclaimer>
+    <assets>
+      <icon>icon.png</icon>
+      <fanart>fanart.jpg</fanart>
+    </assets>
+  </extension>
+</addon>
+
+<addon id="plugin.video.jellyfin" name="Jellyfin" version="2.1.0.8+py3" provider-name="Jellyfin Contributors">
   <requires>
     <import addon="xbmc.python" version="3.0.0" />
     <import addon="script.module.requests" version="2.22.0+matrix.1" />
@@ -47,7 +68,7 @@ Jellyfin for Kodi is the absolute best way to enjoy the incredible Kodi playback
 * Instant synchronization with the Jellyfin server
 * Full support for Movie, TV and Music collections
 * Jellyfin Server direct stream and transcoding support - use Kodi when you are away from home!</description>
-    <news>v2.1.0.5 (2026-09-15):
+    <news>v2.1.0.8 (2026-09-16):
 :tada: New features and improvements
 ------------------------------------
 + fix(music): populate album duration on sync (#1147) @kontell
@@ -390,25 +411,5 @@ CI &amp; build changes
 		<description lang="zh_CN">全面重新设计，打造现代时尚外观，同时保留 Aeon 系列经典质感。</description>
 		<description lang="zh_TW">完全的翻新設計以創造現代化的視覺感受，同時仍維持Aeon的經典外觀。</description>
 	</extension>
-</addon>
-<addon id="plugin.audio.radiode" name="Radio.de" provider-name="fivebanger" version="1.1.14">
-  <requires>
-    <import addon="xbmc.python" version="3.0.0" />
-    <import addon="script.module.requests" version="2.18.4" />
-  </requires>
-  <extension library="addon.py" point="xbmc.python.pluginsource">
-    <provides>audio</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <license>GPL-2.0</license>
-    <platform>all</platform>
-    <summary lang="en">Online radio and podcasts</summary>
-    <description>Add-on to access broadcast streams provided by Radio.de.</description>
-    <disclaimer>This add-on is not endorsed, certified or otherwise approved in any way by Radio.de. Use at your own risk.</disclaimer>
-    <assets>
-      <icon>icon.png</icon>
-      <fanart>fanart.jpg</fanart>
-    </assets>
-  </extension>
 </addon>
 </addons>
