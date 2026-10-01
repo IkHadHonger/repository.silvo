@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="script.module.sidedata" name="Sidedata" version="1.6.0" provider-name="matthane">
+  <requires>
+    <import addon="xbmc.python" version="3.0.0"/>
+  </requires>
+  <extension point="xbmc.service" library="service.py"/>
+  <extension point="xbmc.python.module" library="lib"/>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en_GB">Per frame video metadata for CoreELEC 22.</summary>
+    <description lang="en_GB">Reads the raw video metadata CoreELEC 22 publishes frame by frame during playback. Addons get it as a plain dict, skins get it as Home window properties. Stock Kodi does not publish the metadata, so CoreELEC 22 is required.</description>
+    <assets>
+      <icon>resources/icon.png</icon>
+    </assets>
+    <platform>all</platform>
+    <license>GPL-2.0-or-later</license>
+    <news>v1.6.0: publishes the composer data_mapping (reshaping curves and NLQ dequantization) with an include_mapping opt-out, plus the remaining header and block scalars. Every field libdovi decodes is now published.
+v1.5.0: publishes the rest of libdovi's RPU metadata: L8 saturation/hue trim vectors, colorimetry matrices and signal description, L4/L254/L255 blocks, raw L2 target_max_pq and the remaining header fields.</news>
+  </extension>
+</addon>
