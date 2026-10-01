@@ -1,0 +1,30 @@
+name: Publish tested TinyPPI to both Kodi channels
+on:
+  schedule:
+    - cron: '47 */6 * * *'
+  workflow_dispatch:
+  push:
+    branches: [cube-custom]
+    paths: ['.github/workflows/publish-tinyppi.yml', 'tools/publish_tinyppi.py']
+permissions:
+  contents: write
+concurrency:
+  group: tinyppi-publish
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: cube-custom
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test and publish only newer TinyPPI versions
+        run: python tools/publish_tinyppi.py
