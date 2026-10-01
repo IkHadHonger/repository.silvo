@@ -299,7 +299,7 @@ v1.5.0: publishes the rest of libdovi's RPU metadata: L8 saturation/hue trim vec
     </extension>
 </addon>
 
-<addon id="script.tinyppi" name="TinyPPI" version="2.13.6" provider-name="jamal2362, IkHadHonger">
+<addon id="script.tinyppi" name="TinyPPI" version="2.13.7" provider-name="jamal2362, IkHadHonger">
     <requires>
         <import addon="xbmc.python" version="3.0.0"/>
         <import addon="script.module.sidedata" version="1.6.0"/>
@@ -309,7 +309,7 @@ v1.5.0: publishes the rest of libdovi's RPU metadata: L8 saturation/hue trim vec
         <provides>executable</provides>
     </extension>
     <extension point="xbmc.addon.metadata">
-        <platform>all</platform>
+        <platform>linux</platform>
         <license>AGPL-3.0-or-later</license>
         <source>https://github.com/CE-Repo/script.tinyppi</source>
         <summary lang="ar">يعرض معلومات مخصصة عن عملية المشغل</summary>
