@@ -79,7 +79,8 @@ def main():
         # Test public source without adding credentials to its checkout.
         command(sys.executable, '-m', 'unittest', 'discover', '-s', 'tests', cwd=source)
         command(sys.executable, '-m', 'compileall', '-q', 'main.py', 'resources/lib', cwd=source)
-        command('node', 'tests/test_multi_user.js', cwd=source)
+        for test in (source / 'tests').glob('test_*.js'):
+            command('node', str(test), cwd=source)
         for script in (source / 'resources/web/js').glob('*.js'):
             command('node', '--check', str(script), cwd=source)
         command('git', 'config', 'user.name', 'github-actions[bot]', cwd=repository)
