@@ -91,6 +91,55 @@ CI &amp; build changes
   </extension>
 </addon>
 
+<addon id="script.module.sidedata" name="Sidedata" version="1.6.0" provider-name="matthane">
+  <requires>
+    <import addon="xbmc.python" version="3.0.0"/>
+  </requires>
+  <extension point="xbmc.service" library="service.py"/>
+  <extension point="xbmc.python.module" library="lib"/>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en_GB">Per frame video metadata for CoreELEC 22.</summary>
+    <description lang="en_GB">Reads the raw video metadata CoreELEC 22 publishes frame by frame during playback. Addons get it as a plain dict, skins get it as Home window properties. Stock Kodi does not publish the metadata, so CoreELEC 22 is required.</description>
+    <assets>
+      <icon>resources/icon.png</icon>
+    </assets>
+    <platform>all</platform>
+    <license>GPL-2.0-or-later</license>
+    <news>v1.6.0: publishes the composer data_mapping (reshaping curves and NLQ dequantization) with an include_mapping opt-out, plus the remaining header and block scalars. Every field libdovi decodes is now published.
+v1.5.0: publishes the rest of libdovi's RPU metadata: L8 saturation/hue trim vectors, colorimetry matrices and signal description, L4/L254/L255 blocks, raw L2 target_max_pq and the remaining header fields.</news>
+  </extension>
+</addon>
+
+<addon id="script.tinyppi" name="TinyPPI" version="2.13.2" provider-name="jamal2362, IkHadHonger">
+    <requires>
+        <import addon="xbmc.python" version="3.0.0"/>
+        <import addon="script.module.sidedata" version="1.6.0"/>
+    </requires>
+    <extension point="xbmc.service" library="resources/lib/service/monitor.py" />
+    <extension point="xbmc.python.script" library="main.py">
+        <provides>executable</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <platform>all</platform>
+        <license>AGPL-3.0-or-later</license>
+        <source>https://github.com/CE-Repo/script.tinyppi</source>
+        <summary lang="ar">يعرض معلومات مخصصة عن عملية المشغل</summary>
+        <summary lang="de">Zeigt benutzerdefinierte Prozessinformationen an</summary>
+        <summary lang="en">Displays custom player process information</summary>
+        <summary lang="hu">Egyéni lejátszó-folyamatinformációkat jelenít meg</summary>
+        <summary lang="zh">显示自定义播放器进程信息</summary>
+        <description lang="ar">يفتح نافذة مستقلة لمعلومات العملية. تعرض هذه النافذة تفاصيل برنامج الترميز (Codec) والفيديو والصوت الخاصة بالوسائط التي يتم تشغيلها حاليًا.</description>
+        <description lang="de">Öffnet ein eigenes Prozessinformationen-Fenster. Dieses enthält Codec-, Video- und Audio-Details zum aktuell abgespielten Medium.</description>
+        <description lang="en">Opens a separate process information window. This window displays codec, video, and audio details for the currently playing media.</description>
+        <description lang="hu">Megnyit egy külön folyamatinformációs ablakot. Ez az ablak az aktuálisan lejátszott média kodek-, videó- és hangadatait jeleníti meg.</description>
+        <description lang="zh">打开一个独立的进程信息窗口。此窗口显示当前播放媒体的编解码器、视频和音频详细信息。</description>
+        <assets>
+            <icon>icon.png</icon>
+            <fanart>fanart.png</fanart>
+        </assets>
+    </extension>
+</addon>
+
 <addon id="skin.aeon.nox.silvo.signde" version="69.10.0.5" name="Aeon Nox: SiLVO (avdvplus/p3i)" provider-name="SiLVO, jamal2362, signde">
 	<requires>
 		<import addon="xbmc.gui" version="5.17.0" />
