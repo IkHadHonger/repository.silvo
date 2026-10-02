@@ -78,6 +78,7 @@ def main():
         command('git', 'clone', '--branch', 'main', '--single-branch', 'https://github.com/IkHadHonger/script.tinyppi.git', str(source), cwd=repository)
         # Test public source without adding credentials to its checkout.
         command(sys.executable, '-m', 'unittest', 'discover', '-s', 'tests', cwd=source)
+        command(sys.executable, '-m', 'pytest', 'tests/unit', '-q', cwd=source)
         command(sys.executable, '-m', 'compileall', '-q', 'main.py', 'resources/lib', cwd=source)
         for test in (source / 'tests').glob('test_*.js'):
             command('node', str(test), cwd=source)
