@@ -13,7 +13,15 @@ import zipfile
 
 
 def command(*args, cwd):
-    return subprocess.run(args, cwd=cwd, check=True, text=True, capture_output=True)
+    try:
+        return subprocess.run(args, cwd=cwd, check=True, text=True, capture_output=True)
+    except subprocess.CalledProcessError as error:
+        # Keep failures fatal, but expose the actual test failure in Actions.
+        if error.stdout:
+            print(error.stdout, file=sys.stderr, flush=True)
+        if error.stderr:
+            print(error.stderr, file=sys.stderr, flush=True)
+        raise
 
 
 def version(value):
