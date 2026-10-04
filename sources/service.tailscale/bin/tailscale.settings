@@ -1,0 +1,21 @@
+# SPDX-License-Identifier: GPL-2.0-only
+# Copyright (C) 2026 IkHadHonger
+
+# CoreELEC's legacy helper does not understand Kodi 22's version 4 files.
+# Do not eval XML values: names are validated and values remain data.
+ts_read_settings() {
+  [ -f "$1" ] || return 0
+  xmlstarlet val -q "$1" || return 1
+  ts_format=$(xmlstarlet sel -t -v '/settings/@version' "$1") || ts_format=1
+  case "$ts_format" in
+    1|'') ts_selector='@value' ;;
+    2|3|4) ts_selector='.' ;;
+    *) echo "Unsupported Tailscale settings format: $ts_format" >&2; return 1 ;;
+  esac
+  ts_keys=$(xmlstarlet sel -t -m "/settings/setting[starts-with(@id,'ts_')]" -v '@id' -n "$1") || return 1
+  for ts_key in $ts_keys; do
+    case "$ts_key" in *[!a-z0-9_]*) return 1 ;; esac
+    ts_value=$(xmlstarlet sel -t -v "/settings/setting[@id='$ts_key']/$ts_selector" "$1") || ts_value=
+    export "$ts_key=$ts_value"
+  done
+}
