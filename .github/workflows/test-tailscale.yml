@@ -1,0 +1,19 @@
+name: Test Tailscale fork
+on:
+  push:
+    branches: [avdvplus-custom]
+    paths: ['sources/service.tailscale/**', 'avdvplus/service.tailscale/**', 'tools/*tailscale.py', '.github/workflows/test-tailscale.yml']
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: sudo apt-get update && sudo apt-get install -y xmlstarlet
+      - run: |
+          sh -n sources/service.tailscale/bin/tailscale.settings
+          sh -n sources/service.tailscale/bin/tailscale.start
+          python -m unittest discover -s tools -p test_tailscale.py -v

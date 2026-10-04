@@ -160,6 +160,24 @@ Upstream v2.15.0
     </extension>
 </addon>
 
+<addon id="service.tailscale" name="Tailscale (IkHadHonger ARM64)" version="21.0.12.100" provider-name="Team LibreELEC, Team CoreELEC, IkHadHonger">
+  <requires>
+    <import addon="xbmc.python" version="3.0.0"/>
+  </requires>
+  <extension point="xbmc.service" library="default.py"/>
+  <extension point="xbmc.addon.metadata">
+    <platform>linux</platform>
+    <license>GPL-2.0-only; BSD-3-Clause (Tailscale binaries)</license>
+    <source>https://github.com/IkHadHonger/repository.silvo/tree/avdvplus-custom/sources/service.tailscale</source>
+    <summary lang="en">Tailscale 1.102.4 for CoreELEC 21.3 with an ARM64-capable kernel</summary>
+    <summary lang="nl_NL">Tailscale 1.102.4 voor CoreELEC 21.3 met een ARM64-geschikte kernel</summary>
+    <description lang="en">Prepared for fresh CoreELEC 21.3 installations on AM6B+ and compatible ARM64-kernel devices. Not for 32-bit-only kernels or x86. Do not run alongside Entware Tailscale. Entware login state is not imported automatically. Source compatibility checked against avdvplus R10; addon startup on an actual 21.3 device is not yet verified. Supports settings XML formats 1-4 and retains CoreELEC DNS by default.</description>
+    <description lang="nl_NL">Klaargezet voor schone CoreELEC 21.3-installaties op AM6B+ en apparaten met een geschikte ARM64-kernel. Niet voor uitsluitend 32-bit kernels of x86. Niet tegelijk met Entware Tailscale gebruiken. Een Entware-aanmelding wordt niet automatisch overgenomen. Broncompatibiliteit gecontroleerd tegen avdvplus R10; starten van deze addon op een echt 21.3-apparaat is nog niet getest.</description>
+    <news>21.0.12.100: Initial CoreELEC 21.3 channel package for future fresh installs. Tailscale 1.102.4 ARM64, XML settings formats 1-4, Tailscale DNS off by default. Existing Entware installations should be left unchanged.</news>
+    <assets><icon>icon.png</icon></assets>
+  </extension>
+</addon>
+
 <addon id="skin.aeon.nox.silvo.signde" version="69.10.0.6" name="Aeon Nox: SiLVO (avdvplus/p3i)" provider-name="SiLVO, jamal2362, signde">
 	<requires>
 		<import addon="xbmc.gui" version="5.17.0" />
