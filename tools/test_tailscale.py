@@ -44,7 +44,7 @@ class TailscaleTests(unittest.TestCase):
             self.assertEqual(result.stdout, 'true/false')
 
     def test_package(self):
-        package = ROOT / 'piers/service.tailscale/service.tailscale-22.0.0.100.zip'
+        package = ROOT / 'piers/service.tailscale/service.tailscale-22.0.12.100.zip'
         self.assertEqual(hashlib.sha256(package.read_bytes()).hexdigest(), package.with_suffix('.zip.sha256').read_text().split()[0])
         with zipfile.ZipFile(package) as archive:
             self.assertIsNone(archive.testzip())
@@ -65,7 +65,11 @@ class TailscaleTests(unittest.TestCase):
         self.assertEqual(hashlib.md5(catalog.read_bytes()).hexdigest(), catalog.with_suffix('.xml.md5').read_text().strip())
         entries = [a for a in ET.parse(catalog).getroot() if a.attrib['id'] == 'service.tailscale']
         self.assertEqual(len(entries), 1)
-        self.assertEqual(entries[0].attrib['version'], '22.0.0.100')
+        self.assertEqual(entries[0].attrib['version'], '22.0.12.100')
+
+    def test_version_exceeds_official(self):
+        version = ET.parse(SOURCE / 'addon.xml').getroot().attrib['version']
+        self.assertGreater(tuple(map(int, version.split('.'))), (22, 0, 12, 9))
 
 if __name__ == '__main__':
     unittest.main()

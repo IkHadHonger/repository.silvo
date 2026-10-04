@@ -9,7 +9,9 @@ Bundled binaries: official Tailscale 1.102.4 ARM64, BSD-3-Clause.
 SHA-256 of the upstream archive:
 `9dd1e6a592a014bbaea0103167ffe299adeda4ba14e078ce9c2895364f6c4c3f`.
 
-Addon version 22.0.0.100 is independent of the bundled Tailscale version.
+Addon version 22.0.12.100 is independent of the bundled Tailscale version.
+It follows the official 22.0.12 base and exceeds official revision 9.
+The original 22.0.0.100 was lower than 22.0.12.9; this release corrects that.
 The existing ID `service.tailscale`, settings, socket, systemd unit and
 `/storage/.cache/tailscale/tailscaled.state` are retained. Do not uninstall
 or remove state files to migrate. Select this repository as update source;
