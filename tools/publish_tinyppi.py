@@ -24,6 +24,16 @@ def command(*args, cwd):
         raise
 
 
+def check(*args, cwd):
+    """Show successful test summaries too, so every release has an audit trail."""
+    result = command(*args, cwd=cwd)
+    if result.stdout:
+        print(result.stdout, flush=True)
+    if result.stderr:
+        print(result.stderr, file=sys.stderr, flush=True)
+    return result
+
+
 def version(value):
     if not re.fullmatch(r'\d+\.\d+\.\d+', value):
         raise ValueError('Manual version review required: ' + value)
@@ -85,13 +95,13 @@ def main():
         source = Path(temporary) / 'tinyppi'
         command('git', 'clone', '--branch', 'main', '--single-branch', 'https://github.com/IkHadHonger/script.tinyppi.git', str(source), cwd=repository)
         # Test public source without adding credentials to its checkout.
-        command(sys.executable, '-m', 'unittest', 'discover', '-s', 'tests', cwd=source)
-        command(sys.executable, '-m', 'pytest', 'tests/unit', '-q', cwd=source)
-        command(sys.executable, '-m', 'compileall', '-q', 'main.py', 'resources/lib', cwd=source)
+        check(sys.executable, '-m', 'unittest', 'discover', '-s', 'tests', cwd=source)
+        check(sys.executable, '-m', 'pytest', 'tests/unit', '-q', cwd=source)
+        check(sys.executable, '-m', 'compileall', '-q', 'main.py', 'resources/lib', cwd=source)
         for test in (source / 'tests').glob('test_*.js'):
-            command('node', str(test), cwd=source)
+            check('node', str(test), cwd=source)
         for script in (source / 'resources/web/js').glob('*.js'):
-            command('node', '--check', str(script), cwd=source)
+            check('node', '--check', str(script), cwd=source)
         command('git', 'config', 'user.name', 'github-actions[bot]', cwd=repository)
         command('git', 'config', 'user.email', '41898282+github-actions[bot]@users.noreply.github.com', cwd=repository)
         publish(source, repository, 'cube-custom', 'piers')
