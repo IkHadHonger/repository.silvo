@@ -95,6 +95,9 @@ def main():
         source = Path(temporary) / 'tinyppi'
         command('git', 'clone', '--branch', 'main', '--single-branch', 'https://github.com/IkHadHonger/script.tinyppi.git', str(source), cwd=repository)
         # Test public source without adding credentials to its checkout.
+        check('npm', 'ci', cwd=source)
+        check('npm', 'run', 'lint', cwd=source)
+        check('npm', 'test', cwd=source)
         check(sys.executable, '-m', 'unittest', 'discover', '-s', 'tests', cwd=source)
         check(sys.executable, '-m', 'pytest', 'tests/unit', '-q', cwd=source)
         check(sys.executable, '-m', 'compileall', '-q', 'main.py', 'resources/lib', cwd=source)
