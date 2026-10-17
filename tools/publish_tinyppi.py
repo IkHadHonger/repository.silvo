@@ -94,6 +94,8 @@ def main():
     with tempfile.TemporaryDirectory() as temporary:
         source = Path(temporary) / 'tinyppi'
         command('git', 'clone', '--branch', 'main', '--single-branch', 'https://github.com/IkHadHonger/script.tinyppi.git', str(source), cwd=repository)
+        source_commit = command('git', 'rev-parse', 'HEAD', cwd=source).stdout.strip()
+        print(f'Testing and packaging TinyPPI source commit: {source_commit}', flush=True)
         # Test public source without adding credentials to its checkout.
         check('npm', 'ci', cwd=source)
         check('npm', 'run', 'lint', cwd=source)
