@@ -1,3 +1,4 @@
+# Publishes each tested newer fork release to both supported channels.
 name: Publish tested TinyPPI to both Kodi channels
 on:
   schedule:
