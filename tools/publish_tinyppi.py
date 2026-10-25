@@ -45,6 +45,7 @@ def publish(source, repository, branch, channel):
     addon = ET.fromstring(metadata)
     assert addon.attrib['id'] == 'script.tinyppi'
     release = addon.attrib['version']
+    print(f'Preparing {branch}/{channel}: TinyPPI {release}', flush=True)
     catalog = repository / channel / 'addons.xml'
     before = {a.attrib['id']: ET.tostring(a) for a in ET.parse(catalog).getroot()}
     deployed = ET.fromstring(before['script.tinyppi']).attrib['version']
