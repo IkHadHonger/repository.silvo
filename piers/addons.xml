@@ -132,7 +132,7 @@ CI &amp; build changes
       </assets>
     </extension>
   </addon>
-  <addon id="plugin.video.viaplay" version="2.4.6-beta.5" name="Viaplay" provider-name="mariusz89b, emilsvennesson, heppen-dev, IkHadHonger">
+  <addon id="plugin.video.viaplay" version="2.4.6-beta.6" name="Viaplay" provider-name="mariusz89b, emilsvennesson, heppen-dev, IkHadHonger">
     <requires>
       <import addon="script.module.requests" version="2.9.1" />
       <import addon="script.module.iso8601" version="0.1.11" />
@@ -157,7 +157,11 @@ CI &amp; build changes
       <platform>all</platform>
       <license>GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007 and MIT LICENSE.</license>
       <source>https://github.com/IkHadHonger/plugin.video.viaplay</source>
-      <news>v2.4.6-beta.5 (2026-10-25)
+      <news>v2.4.6-beta.6 (2026-10-25)
+- Fixed malformed Kodi 22 drm_legacy configuration.
+- Fixed registration of the hidden profile setting.
+
+v2.4.6-beta.5 (2026-10-25)
 - Fixed Widevine license requests on Kodi 22 / InputStream Adaptive 22.
 - Send the required raw Widevine challenge to current Viaplay endpoints.
 - Fall back to the account profile when no profile has been selected.
