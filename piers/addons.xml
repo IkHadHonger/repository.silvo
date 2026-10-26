@@ -1,65 +1,66 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addons>
-  <addon id="plugin.audio.radiode" name="Radio.de" provider-name="fivebanger" version="1.1.14">
-    <requires>
-      <import addon="xbmc.python" version="3.0.0" />
-      <import addon="script.module.requests" version="2.18.4" />
-    </requires>
-    <extension library="addon.py" point="xbmc.python.pluginsource">
-      <provides>audio</provides>
-    </extension>
-    <extension point="xbmc.addon.metadata">
-      <license>GPL-2.0</license>
-      <platform>all</platform>
-      <summary lang="en">Online radio and podcasts</summary>
-      <description>Add-on to access broadcast streams provided by Radio.de.</description>
-      <disclaimer>This add-on is not endorsed, certified or otherwise approved in any way by Radio.de. Use at your own risk.</disclaimer>
-      <assets>
-        <icon>icon.png</icon>
-        <fanart>fanart.jpg</fanart>
-      </assets>
-    </extension>
-  </addon>
-  <addon id="plugin.video.jellyfin" name="Jellyfin" version="2.2.0.34+py3" provider-name="Jellyfin Contributors">
-    <requires>
-      <import addon="xbmc.python" version="3.0.0" />
-      <import addon="script.module.requests" version="2.22.0+matrix.1" />
-      <import addon="script.module.dateutil" version="2.8.1+matrix.1" />
-      <import addon="script.module.websocket" version="1.6.4" />
-      <import addon="script.module.typing_extensions" version="4.7.1" />
-    </requires>
-    <extension point="xbmc.python.pluginsource" library="default.py">
-      <provides>video audio image</provides>
-    </extension>
-    <extension point="xbmc.service" library="service.py" start="login">
+<addon id="plugin.audio.radiode" name="Radio.de" provider-name="fivebanger" version="1.1.14">
+  <requires>
+    <import addon="xbmc.python" version="3.0.0" />
+    <import addon="script.module.requests" version="2.18.4"/>
+  </requires>
+  <extension library="addon.py" point="xbmc.python.pluginsource">
+    <provides>audio</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <license>GPL-2.0</license>
+    <platform>all</platform>
+    <summary lang="en">Online radio and podcasts</summary>
+    <description>Add-on to access broadcast streams provided by Radio.de.</description>
+    <disclaimer>This add-on is not endorsed, certified or otherwise approved in any way by Radio.de. Use at your own risk.</disclaimer>
+    <assets>
+      <icon>icon.png</icon>
+      <fanart>fanart.jpg</fanart>
+    </assets>
+  </extension>
+</addon>
+
+<addon id="plugin.video.jellyfin" name="Jellyfin" version="2.2.0.34+py3" provider-name="Jellyfin Contributors">
+  <requires>
+    <import addon="xbmc.python" version="3.0.0" />
+    <import addon="script.module.requests" version="2.22.0+matrix.1" />
+    <import addon="script.module.dateutil" version="2.8.1+matrix.1" />
+    <import addon="script.module.websocket" version="1.6.4" />
+    <import addon="script.module.typing_extensions" version="4.7.1" />
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+    <provides>video audio image</provides>
+  </extension>
+  <extension point="xbmc.service" library="service.py" start="login">
 	</extension>
-    <extension point="kodi.context.item">
-      <menu id="kodi.core.main">
-        <item library="context.py">
-          <label>30401</label>
-          <visible>[!String.IsEmpty(ListItem.DBID) + !String.IsEqual(ListItem.DBID,-1) |
+  <extension point="kodi.context.item">
+    <menu id="kodi.core.main">
+      <item library="context.py">
+        <label>30401</label>
+        <visible>[!String.IsEmpty(ListItem.DBID) + !String.IsEqual(ListItem.DBID,-1) |
 					!String.IsEmpty(ListItem.Property(jellyfinid))] +
 					!String.IsEmpty(Window(10000).Property(jellyfin_context))</visible>
-        </item>
-        <item library="context_play.py">
-          <label>30402</label>
-          <visible>[[!String.IsEmpty(ListItem.DBID) + !String.IsEqual(ListItem.DBID,-1) |
+      </item>
+      <item library="context_play.py">
+        <label>30402</label>
+        <visible>[[!String.IsEmpty(ListItem.DBID) + !String.IsEqual(ListItem.DBID,-1) |
 					!String.IsEmpty(ListItem.Property(jellyfinid))] + [String.IsEqual(ListItem.DBTYPE,movie) |
 					String.Contains(Container.FolderPath,livetv) |
 					String.IsEqual(ListItem.DBTYPE,episode)]] +
 					!String.IsEmpty(Window(10000).Property(jellyfin_context_transcode))</visible>
-        </item>
-      </menu>
-    </extension>
-    <extension point="xbmc.addon.metadata">
-      <platform>all</platform>
-      <language>en</language>
-      <license>GNU GENERAL PUBLIC LICENSE. Version 3, 29 June 2007</license>
-      <forum>https://forum.jellyfin.org</forum>
-      <website>https://jellyfin.org/</website>
-      <source>https://github.com/jellyfin/jellyfin-kodi</source>
-      <summary lang="en" />
-      <description lang="en">Welcome to Jellyfin for Kodi!
+      </item>
+    </menu>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <platform>all</platform>
+    <language>en</language>
+    <license>GNU GENERAL PUBLIC LICENSE. Version 3, 29 June 2007</license>
+    <forum>https://forum.jellyfin.org</forum>
+    <website>https://jellyfin.org/</website>
+    <source>https://github.com/jellyfin/jellyfin-kodi</source>
+    <summary lang="en" />
+    <description lang="en">Welcome to Jellyfin for Kodi!
 A whole new way to manage and view your media library. The Jellyfin addon for Kodi combines the best of Kodi - ultra smooth navigation, beautiful UIs and playback of any file under the sun, and Jellyfin - the most powerful fully open source multi-client media metadata indexer and server.
 
 Jellyfin for Kodi is the absolute best way to enjoy the incredible Kodi playback engine combined with the power of Jellyfin's centralized database. Features:
@@ -67,7 +68,7 @@ Jellyfin for Kodi is the absolute best way to enjoy the incredible Kodi playback
 * Instant synchronization with the Jellyfin server
 * Full support for Movie, TV and Music collections
 * Jellyfin Server direct stream and transcoding support - use Kodi when you are away from home!</description>
-      <news>v2.2.0.34 (2026-10-12):
+    <news>v2.2.0.34 (2026-10-12):
 New features and improvements
 -----------------------------
 + Make UpNext integration optional (#1178) @Rijul-A, @oddstr13
@@ -126,38 +127,39 @@ CI &amp; build changes
 + Update codecov/codecov-action action to v7 (#1143) @renovate[bot], @oddstr13
 + Update actions/checkout action to v7 (#1148) @renovate[bot], @oddstr13
 + Update actions/setup-python action to v6.3.0 (#1150) @renovate[bot], @oddstr13</news>
-      <assets>
-        <icon>resources/icon.png</icon>
-        <fanart>resources/fanart.png</fanart>
-      </assets>
-    </extension>
-  </addon>
-  <addon id="plugin.video.viaplay" version="2.4.6-beta.6" name="Viaplay" provider-name="mariusz89b, emilsvennesson, heppen-dev, IkHadHonger">
-    <requires>
-      <import addon="script.module.requests" version="2.9.1" />
-      <import addon="script.module.iso8601" version="0.1.11" />
-      <import addon="script.module.inputstreamhelper" version="0.3.3" />
-      <import addon="script.module.routing" version="0.2.0" />
-    </requires>
-    <extension point="xbmc.python.pluginsource" library="default.py">
-      <provides>video</provides>
-    </extension>
-    <extension point="xbmc.service" library="login.py" />
-    <extension point="xbmc.addon.metadata">
-      <description lang="da_DK">Se indhold fra Viaplay.</description>
-      <description lang="en_GB">Watch content from Viaplay.</description>
-      <description lang="fi_FI">Katso sisältöä Viaplay.</description>
-      <description lang="nb_NO">Se innhold fra Viaplay.</description>
-      <description lang="nl_NL">Bekijk inhoud van Viaplay.</description>
-      <description lang="sv_SE">Titta på innehåll från Viaplay.</description>
-      <description lang="pl_PL">Oglądaj treści z Viaplay.</description>
-      <description lang="lt_LT">Žiūrėkite turinį iš Viaplay.</description>
-      <disclaimer lang="en_GB">This add-on is unoffical and is not endorsed or supported by any of the services provided in any way. Any trademarks used belong to their owning companies and organisations, it is also required to have a subscription to Viaplay.</disclaimer>
-      <language>da en fi nb nl sv pl lt</language>
-      <platform>all</platform>
-      <license>GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007 and MIT LICENSE.</license>
-      <source>https://github.com/IkHadHonger/plugin.video.viaplay</source>
-      <news>v2.4.6-beta.6 (2026-10-25)
+    <assets>
+      <icon>resources/icon.png</icon>
+      <fanart>resources/fanart.png</fanart>
+    </assets>
+  </extension>
+</addon>
+
+<addon id="plugin.video.viaplay" version="2.4.6-beta.6" name="Viaplay" provider-name="mariusz89b, emilsvennesson, heppen-dev, IkHadHonger">
+  <requires>
+    <import addon="script.module.requests" version="2.9.1" />
+    <import addon="script.module.iso8601" version="0.1.11" />
+    <import addon="script.module.inputstreamhelper" version="0.3.3" />
+    <import addon="script.module.routing" version="0.2.0" />
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+    <provides>video</provides>
+  </extension>
+  <extension point="xbmc.service" library="login.py"/>
+  <extension point="xbmc.addon.metadata">
+    <description lang="da_DK">Se indhold fra Viaplay.</description>
+    <description lang="en_GB">Watch content from Viaplay.</description>
+    <description lang="fi_FI">Katso sisältöä Viaplay.</description>
+    <description lang="nb_NO">Se innhold fra Viaplay.</description>
+	<description lang="nl_NL">Bekijk inhoud van Viaplay.</description>
+    <description lang="sv_SE">Titta på innehåll från Viaplay.</description>
+    <description lang="pl_PL">Oglądaj treści z Viaplay.</description>
+    <description lang="lt_LT">Žiūrėkite turinį iš Viaplay.</description>
+	<disclaimer lang="en_GB">This add-on is unoffical and is not endorsed or supported by any of the services provided in any way. Any trademarks used belong to their owning companies and organisations, it is also required to have a subscription to Viaplay.</disclaimer>
+	<language>da en fi nb nl sv pl lt</language>
+    <platform>all</platform>
+    <license>GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007 and MIT LICENSE.</license>
+	<source>https://github.com/IkHadHonger/plugin.video.viaplay</source>
+	<news>v2.4.6-beta.6 (2026-10-25)
 - Fixed malformed Kodi 22 drm_legacy configuration.
 - Fixed registration of the hidden profile setting.
 
@@ -294,258 +296,294 @@ v.2.1.3 (2021-08-05)
 - Added Polish translation. @hevet
 - Added Swedish translation. @Mariusz89B
     </news>
-      <assets>
+    <assets>
         <icon>icon.png</icon>
         <fanart>resources/fanart.jpg</fanart>
         <banner>resources/banner.jpg</banner>
         <clearlogo>resources/clearlogo.png</clearlogo>
         <screenshot>resources/screenshots/screenshot-01.jpg</screenshot>
-        <screenshot>resources/screenshots/screenshot-02.jpg</screenshot>
-        <screenshot>resources/screenshots/screenshot-03.jpg</screenshot>
-      </assets>
-    </extension>
-  </addon>
-  <addon id="script.module.sidedata" name="Sidedata" version="1.6.0" provider-name="matthane">
-    <requires>
-      <import addon="xbmc.python" version="3.0.0" />
-    </requires>
-    <extension point="xbmc.service" library="service.py" />
-    <extension point="xbmc.python.module" library="lib" />
-    <extension point="xbmc.addon.metadata">
-      <summary lang="en_GB">Per frame video metadata for CoreELEC 22.</summary>
-      <description lang="en_GB">Reads the raw video metadata CoreELEC 22 publishes frame by frame during playback. Addons get it as a plain dict, skins get it as Home window properties. Stock Kodi does not publish the metadata, so CoreELEC 22 is required.</description>
-      <assets>
-        <icon>resources/icon.png</icon>
-      </assets>
-      <platform>all</platform>
-      <license>GPL-2.0-or-later</license>
-      <news>v1.6.0: publishes the composer data_mapping (reshaping curves and NLQ dequantization) with an include_mapping opt-out, plus the remaining header and block scalars. Every field libdovi decodes is now published.
+		<screenshot>resources/screenshots/screenshot-02.jpg</screenshot>
+		<screenshot>resources/screenshots/screenshot-03.jpg</screenshot>
+    </assets>
+  </extension>
+</addon>
+
+<addon id="script.module.sidedata" name="Sidedata" version="1.6.0" provider-name="matthane">
+  <requires>
+    <import addon="xbmc.python" version="3.0.0"/>
+  </requires>
+  <extension point="xbmc.service" library="service.py"/>
+  <extension point="xbmc.python.module" library="lib"/>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en_GB">Per frame video metadata for CoreELEC 22.</summary>
+    <description lang="en_GB">Reads the raw video metadata CoreELEC 22 publishes frame by frame during playback. Addons get it as a plain dict, skins get it as Home window properties. Stock Kodi does not publish the metadata, so CoreELEC 22 is required.</description>
+    <assets>
+      <icon>resources/icon.png</icon>
+    </assets>
+    <platform>all</platform>
+    <license>GPL-2.0-or-later</license>
+    <news>v1.6.0: publishes the composer data_mapping (reshaping curves and NLQ dequantization) with an include_mapping opt-out, plus the remaining header and block scalars. Every field libdovi decodes is now published.
 v1.5.0: publishes the rest of libdovi's RPU metadata: L8 saturation/hue trim vectors, colorimetry matrices and signal description, L4/L254/L255 blocks, raw L2 target_max_pq and the remaining header fields.</news>
-    </extension>
-  </addon>
-  <addon id="script.skin.info.service" name="Skin Info Service" version="2.0.1~beta4" provider-name="MikeSiLVO">
-    <requires>
-      <import addon="xbmc.python" version="3.0.1" />
-      <import addon="xbmc.json" version="13.5.0" />
-      <import addon="script.module.pil" version="1.1.7" />
-      <import addon="script.module.requests" version="2.31.0" />
-    </requires>
-    <extension point="xbmc.python.pluginsource" library="plugin.py">
-      <provides>video</provides>
-    </extension>
-    <extension point="xbmc.python.library" library="script.py" />
-    <extension point="xbmc.service" library="service.py" />
-    <extension point="kodi.context.item">
-      <menu id="kodi.core.main">
-        <item library="context.py">
-          <label>$ADDON[script.skin.info.service 32102]</label>
-          <visible>!String.IsEmpty(ListItem.DBID) + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode) | String.IsEqual(ListItem.DBType,musicvideo) | String.IsEqual(ListItem.DBType,set) | String.IsEqual(ListItem.DBType,artist) | String.IsEqual(ListItem.DBType,album) | String.IsEqual(ListItem.DBType,song)]</visible>
-        </item>
-      </menu>
-    </extension>
-    <extension point="xbmc.addon.metadata">
-      <platform>all</platform>
-      <license>GPL-3.0-only</license>
-      <source>https://github.com/MikeSiLVO/script.skin.info.service</source>
-      <forum>https://forum.kodi.tv/showthread.php?tid=384016</forum>
-      <assets>
-        <icon>icon.png</icon>
-        <fanart>fanart.jpg</fanart>
-      </assets>
-      <news>
-2.0.1~beta4
-- Fix memory growing during video playback
-- The IMDb Top 250 can update itself daily, or be run straight from a skin
-- New star-scale property for Roger Ebert and Letterboxd ratings
-- Award counts are left empty instead of writing 0
-- Similar items rank on shared genres first, and can be limited to unwatched or to a playlist
-- A TV show with no cast of its own falls back to the season regulars
-- The ratings dialog shows progress while it loads library items
-- Filmography ratings show at one decimal
-- Blur skips internal art and skin textures
-- The letter bar checks the available letters without scanning every item
-- A failed Trakt token refresh no longer signs you out
+  </extension>
+</addon>
+
+<addon id="script.skin.info.service"
+	   name="Skin Info Service"
+	   version="2.0.1~beta13"
+	   provider-name="MikeSiLVO">
+	<requires>
+		<import addon="xbmc.python" version="3.0.1" />
+		<import addon="xbmc.json" version="13.5.0" />
+		<import addon="script.module.pil" version="1.1.7" />
+		<import addon="script.module.requests" version="2.31.0" />
+	</requires>
+	<extension point="xbmc.python.pluginsource" library="plugin.py">
+		<provides>video</provides>
+	</extension>
+	<extension point="xbmc.python.library" library="script.py" />
+	<extension point="xbmc.service" library="service.py" />
+	<extension point="kodi.context.item">
+		<menu id="kodi.core.main">
+			<item library="context.py">
+				<label>$ADDON[script.skin.info.service 32102]</label>
+				<visible>!String.IsEmpty(ListItem.DBID) + [String.IsEqual(ListItem.DBType,movie) | String.IsEqual(ListItem.DBType,tvshow) | String.IsEqual(ListItem.DBType,season) | String.IsEqual(ListItem.DBType,episode) | String.IsEqual(ListItem.DBType,musicvideo) | String.IsEqual(ListItem.DBType,set) | String.IsEqual(ListItem.DBType,artist) | String.IsEqual(ListItem.DBType,album) | String.IsEqual(ListItem.DBType,song)] + [Addon.SettingBool(script.skin.info.service,context_show_review_artwork) | Addon.SettingBool(script.skin.info.service,context_show_download_artwork) | Addon.SettingBool(script.skin.info.service,context_show_update_ratings) | Addon.SettingBool(script.skin.info.service,context_show_edit_metadata) | Addon.SettingBool(script.skin.info.service,context_show_export_nfo)]</visible>
+			</item>
+			<item library="context.py" args="pvr">
+				<label>$ADDON[script.skin.info.service 32079]</label>
+				<visible>Skin.HasSetting(SkinInfo.PVR) + [[String.StartsWith(ListItem.FileNameAndPath,pvr://guide/) + !Window.IsActive(radioguide) + !Window.IsActive(radiosearch)] | [String.StartsWith(ListItem.FileNameAndPath,pvr://channels/tv/) + ListItem.HasEpg] | [String.StartsWith(ListItem.FileNameAndPath,pvr://recordings/tv/) + !ListItem.IsFolder] | [String.StartsWith(ListItem.FileNameAndPath,pvr://timers/tv/timers/) + ListItem.HasEpg]]</visible>
+			</item>
+		</menu>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<platform>all</platform>
+		<license>GPL-3.0-only</license>
+		<source>https://github.com/MikeSiLVO/script.skin.info.service</source>
+		<forum>https://forum.kodi.tv/showthread.php?tid=384016</forum>
+		<assets>
+			<icon>icon.png</icon>
+			<fanart>fanart.jpg</fanart>
+		</assets>
+		<news>
+2.0.1~beta13
+- The database is rebuilt, so online data is fetched again on first run
+- New widgets: Continue Watching, Next Up (Favourites), Recent Videos, Favourites, Upcoming Episodes and TMDB Discover
+- Trakt widgets for watchlist, history, in progress, Next Up, most played and lists
+- Online properties for episodes and for add-on widget items outside the library
+- Live TV properties for the guide, channels, recordings and timers, with a Fix match context menu item
+- Player properties for the playing season, live TV, and the artist's discography and similar artists
+- New properties for awards, Rotten Tomatoes counts, star ratings, HDR, audio and subtitle language, watch time and image color
+- Ratings sources can each be turned off, and the IMDb Top 250 can update itself daily
+- Artwork review covers episodes and music videos, adds Fanart.tv 4K backgrounds and season keyart, with a full size view
+- Estuary versions of the actor, video info, artwork and image dialogs
+- Actor info covers crew as well as cast, and TMDB search can open the info dialog
+- Slideshow can follow a playlist or library node, and includes music videos
+- Metadata editor handles movie sets and song moods
+- Less input lag while the services run, and Kodi 22 closes faster after a library scan
+- Fix a rare Kodi crash when closing a library window
+- Fix home properties and blur being cleared by modal dialogs
+- Fix ratings and awards showing on the wrong item when a movie and a show share a TMDB id
 		</news>
-      <summary lang="cs_CZ">Poskytuje vzhledům podrobné informace o médiích a grafiku.</summary>
-      <summary lang="en_GB">Provides rich media info and artwork to skins.</summary>
-      <summary lang="es_ES">Provee información enriquecida del contenido y arte a las skins.</summary>
-      <summary lang="fr_FR">Fournit aux habillages des informations enrichies sur les médias ainsi que leurs visuels.</summary>
-      <summary lang="hu_HU">Médiainformációkat és grafikákat biztosít a felszínekhez.</summary>
-      <summary lang="it_IT">Fornisce informazioni sui media e artwork di alta qualità alle skin.</summary>
-      <summary lang="pl_PL">Dostarcza bogatych informacji o mediach i grafikę dla skórek.</summary>
-      <summary lang="ru_RU">Предоставляет обложкам подробную информацию о медиа и иллюстрации.</summary>
-      <summary lang="zh_CN">为皮肤提供丰富的媒体信息和艺术图。</summary>
-      <description lang="cs_CZ">Služba Skin Info Service poskytuje vzhledům podrobná metadata a grafiku nad rámec toho, co Kodi standardně zpřístupňuje. Přidává další vlastnosti, například hodnocení z více zdrojů, grafiku, podrobnosti o streamu a informace o obsazení a ději filmů, seriálů, epizod, sbírek filmů, hudebních videoklipů, interpretů a alb; využívá přitom knihovnu i online data. Obsahuje také nástroj pro vyhledání animovaných plakátů GIF a jejich přidání do knihovny.</description>
-      <description lang="en_GB">Skin Info Service provides skins with rich metadata and artwork beyond what Kodi exposes by default. It adds extra properties such as ratings from multiple sources, artwork, stream details, and cast and plot information for movies, TV shows, episodes, sets, music videos, artists, and albums, drawing on both your library and online data. It also includes a tool to find and add animated GIF posters to your library.</description>
-      <description lang="fr_FR">Skin Info Service fournit des informations supplémentaires telles que les notes, les illustrations et les détails de flux pour les films, les séries, les sagas, les artistes et les albums. Comprend un outil de recherche d'affiches GIF pour trouver et ajouter automatiquement des affiches GIF animées à votre médiathèque.</description>
-      <description lang="hu_HU">A Skin Info Service gazdag metaadatokkal és grafikákkal látja el a felszíneket, amelyek túlmutatnak azon, amit a Kodi alapértelmezés szerint megjelenít. Extra tulajdonságokat ad hozzá, például értékeléseket több forrásból, grafikákat, streamelési részleteket, valamint szereplő- és cselekményinformációkat filmekhez, tévéműsorokhoz, epizódokhoz, díszletekhez, videoklipekhez, előadókhoz és albumokhoz, mind a médiatárad, mind az online adatok felhasználásával. Tartalmaz egy eszközt is, amellyel animált GIF-posztereket kereshetsz és adhatsz hozzá a médiatáradhoz.</description>
-      <description lang="it_IT">Skin Info Service fornisce alle skin metadati e artwork avanzati, oltre a quanto Kodi mostra di default. Aggiunge proprietà extra come le valutazioni da più fonti, artwork, dettagli del flusso e informazioni su cast e trama per film, serie TV, episodi, saghe cinematografiche, video musicali, artisti e album, attingendo sia dalla libreria che dai dati online. Include anche uno strumento per trovare e aggiungere poster GIF animati alla libreria.</description>
-      <description lang="pl_PL">Skin Info Service dostarcza skórkom bogate metadane i grafikę, wykraczając daleko poza to, co Kodi udostępnia domyślnie. Dodaje dodatkowe właściwości, takie jak oceny z wielu źródeł, grafikę, szczegóły transmisji oraz informacje o obsadzie i fabule filmów, seriali, odcinków, kolekcji filmowych, teledysków, wykonawców i albumów, korzystając zarówno z Twojej biblioteki, jak i danych online. Zawiera również narzędzie do wyszukiwania i dodawania animowanych plakatów GIF do Twojej biblioteki.</description>
-      <description lang="ru_RU">Skin Info Service предоставляет обложкам расширенные метаданные и иллюстрации, выходящие за рамки стандартных возможностей Kodi. Он добавляет дополнительные свойства, такие как рейтинги из нескольких источников, иллюстрации, сведения о потоках, а также информацию об актёрах и сюжете для фильмов, сериалов, серий, киноциклов, музыкальных клипов, исполнителей и альбомов, используя как вашу медиатеку, так и данные из интернета. Также включает инструмент для поиска и добавления в медиатеку анимированных постеров в формате GIF.</description>
-      <description lang="zh_CN">皮肤信息服务为皮肤提供超出 Kodi 默认范围的丰富元数据和艺术图。它添加了多种额外属性,例如来自多个来源的评分、艺术图、流媒体详情,以及电影、电视剧、剧集、合集、音乐视频、艺术家和专辑的演员阵容和剧情信息,数据来源包括您的媒体库和在线数据。它还包含一个工具,用于查找并向您的媒体库添加动画 GIF 海报。</description>
-    </extension>
-  </addon>
-  <addon id="script.skinshortcuts" name="Skin Shortcuts" version="3.0.4~beta3" provider-name="MikeSiLVO">
+		<summary lang="cs_CZ">Poskytuje vzhledům podrobné informace o médiích a grafiku.</summary>
+		<summary lang="en_GB">Provides rich media info and artwork to skins.</summary>
+		<summary lang="en_US">Provides rich media info and artwork to skins.</summary>
+		<summary lang="es_ES">Provee información enriquecida del contenido y arte a las skins.</summary>
+		<summary lang="fr_FR">Fournit aux habillages des informations enrichies sur les médias ainsi que leurs visuels.</summary>
+		<summary lang="hu_HU">Médiainformációkat és grafikákat biztosít a felszínekhez.</summary>
+		<summary lang="it_IT">Fornisce informazioni sui media e artwork di alta qualità alle skin.</summary>
+		<summary lang="pl_PL">Dostarcza bogatych informacji o mediach i grafikę dla skórek.</summary>
+		<summary lang="ru_RU">Предоставляет обложкам подробную информацию о медиа и иллюстрации.</summary>
+		<summary lang="zh_CN">为皮肤提供丰富的媒体信息和艺术图。</summary>
+		<description lang="cs_CZ">Služba Skin Info Service poskytuje vzhledům podrobná metadata a grafiku nad rámec toho, co Kodi standardně zpřístupňuje. Přidává další vlastnosti, například hodnocení z více zdrojů, grafiku, podrobnosti o streamu a informace o obsazení a ději filmů, seriálů, epizod, sbírek filmů, hudebních videoklipů, interpretů a alb; využívá přitom knihovnu i online data. Obsahuje také nástroj pro vyhledání animovaných plakátů GIF a jejich přidání do knihovny.</description>
+		<description lang="en_GB">Skin Info Service provides skins with rich metadata and artwork beyond what Kodi exposes by default. It adds extra properties such as ratings from multiple sources, artwork, stream details, and cast and plot information for movies, TV shows, episodes, sets, music videos, artists, and albums, drawing on both your library and online data. It also includes a tool to find and add animated GIF posters to your library.</description>
+		<description lang="en_US">Skin Info Service provides skins with rich metadata and artwork beyond what Kodi exposes by default. It adds extra properties such as ratings from multiple sources, artwork, stream details, and cast and plot information for movies, TV shows, episodes, sets, music videos, artists, and albums, drawing on both your library and online data. It also includes a tool to find and add animated GIF posters to your library.</description>
+		<description lang="es_ES">Skin Info Service provee skins con metadata enriquecida y mejor arte de lo que expone Kodi por defecto. Añade propiedades extra como las valoraciones desde distintas fuentes, arte, detalles de la emisión, elenco y argumento de las películas, programas de TV, episodios, sagas, vídeos musicales, intérpretes y álbumes, pintándolo todo en la colección y datos online. Incluye tambien una herramietna para buscar y añadir carteles de GIF animados para la colección.</description>
+		<description lang="fr_FR">Skin Info Service fournit des informations supplémentaires telles que les notes, les illustrations et les détails de flux pour les films, les séries, les sagas, les artistes et les albums. Comprend un outil de recherche d&apos;affiches GIF pour trouver et ajouter automatiquement des affiches GIF animées à votre médiathèque.</description>
+		<description lang="hu_HU">A Skin Info Service gazdag metaadatokkal és grafikákkal látja el a felszíneket, amelyek túlmutatnak azon, amit a Kodi alapértelmezés szerint megjelenít. Extra tulajdonságokat ad hozzá, például értékeléseket több forrásból, grafikákat, streamelési részleteket, valamint szereplő- és cselekményinformációkat filmekhez, tévéműsorokhoz, epizódokhoz, díszletekhez, videoklipekhez, előadókhoz és albumokhoz, mind a médiatárad, mind az online adatok felhasználásával. Tartalmaz egy eszközt is, amellyel animált GIF-posztereket kereshetsz és adhatsz hozzá a médiatáradhoz.</description>
+		<description lang="it_IT">Skin Info Service fornisce alle skin metadati e artwork avanzati, oltre a quanto Kodi mostra di default. Aggiunge proprietà extra come le valutazioni da più fonti, artwork, dettagli del flusso e informazioni su cast e trama per film, serie TV, episodi, saghe cinematografiche, video musicali, artisti e album, attingendo sia dalla libreria che dai dati online. Include anche uno strumento per trovare e aggiungere poster GIF animati alla libreria.</description>
+		<description lang="pl_PL">Skin Info Service dostarcza skórkom bogate metadane i grafikę, wykraczając daleko poza to, co Kodi udostępnia domyślnie. Dodaje dodatkowe właściwości, takie jak oceny z wielu źródeł, grafikę, szczegóły transmisji oraz informacje o obsadzie i fabule filmów, seriali, odcinków, kolekcji filmowych, teledysków, wykonawców i albumów, korzystając zarówno z Twojej biblioteki, jak i danych online. Zawiera również narzędzie do wyszukiwania i dodawania animowanych plakatów GIF do Twojej biblioteki.</description>
+		<description lang="ru_RU">Skin Info Service предоставляет обложкам расширенные метаданные и иллюстрации, выходящие за рамки стандартных возможностей Kodi. Он добавляет дополнительные свойства, такие как рейтинги из нескольких источников, иллюстрации, сведения о потоках, а также информацию об актёрах и сюжете для фильмов, сериалов, серий, киноциклов, музыкальных клипов, исполнителей и альбомов, используя как вашу медиатеку, так и данные из интернета. Также включает инструмент для поиска и добавления в медиатеку анимированных постеров в формате GIF.</description>
+		<description lang="zh_CN">皮肤信息服务为皮肤提供超出 Kodi 默认范围的丰富元数据和艺术图。它添加了多种额外属性,例如来自多个来源的评分、艺术图、流媒体详情,以及电影、电视剧、剧集、合集、音乐视频、艺术家和专辑的演员阵容和剧情信息,数据来源包括您的媒体库和在线数据。它还包含一个工具,用于查找并向您的媒体库添加动画 GIF 海报。</description>
+		<disclaimer lang="cs_CZ">Tento doplněk využívá službu TMDb a její rozhraní API, ale nemá od TMDb oficiální podporu, certifikaci ani jiné schválení.</disclaimer>
+		<disclaimer lang="en_GB">This add-on uses TMDB and the TMDB APIs but is not endorsed, certified, or otherwise approved by TMDB.</disclaimer>
+		<disclaimer lang="en_US">This add-on uses TMDB and the TMDB APIs but is not endorsed, certified, or otherwise approved by TMDB.</disclaimer>
+		<disclaimer lang="it_IT">Questo add-on usa TMDB e le API di TMDB, ma non è approvato, certificato o altrimenti autorizzato da TMDB.</disclaimer>
+		<disclaimer lang="pl_PL">Ten dodatek korzysta z serwisu TMDB i interfejsów API TMDB, ale nie jest zatwierdzony, certyfikowany ani w żaden inny sposób wspierany przez TMDB.</disclaimer>
+		<disclaimer lang="ru_RU">Это дополнение использует TMDB и API TMDB, но не одобрено, не сертифицировано и иным образом не поддержано TMDB.</disclaimer>
+	</extension>
+</addon>
+<addon id="script.skinshortcuts" name="Skin Shortcuts" version="3.0.6~beta1" provider-name="MikeSiLVO">
     <requires>
-      <import addon="xbmc.python" version="3.0.2" />
+        <import addon="xbmc.python" version="3.0.2"/>
     </requires>
-    <extension point="xbmc.python.script" library="default.py" />
+    <extension point="xbmc.python.script" library="default.py"/>
     <extension point="xbmc.addon.metadata">
-      <news>
-3.0.4~beta3
-  - Fix: a variable a template declares stays defined when no menu item matches it
+        <news>
+3.0.6~beta1
+  - Fix: a reset or restored item shows its widget and background without reopening the dialog
+  - Fix: the id property is wrapped in $NUMBER
 
-3.0.4~beta2
-  - Add: a warning when a menu, item, widget, background or view name is defined more than once
+3.0.5
+  - Fix: a skin made for Skin Shortcuts v2 shows a modal leading to the skin setting or Add-ons
+  - Fix: the menu shows on the first start after a Kodi upgrade
+  - Add: a visible condition on property options
+  - Add: more reset labels for skins
+  - Add: template content that cannot be built is reported, with the fix in the log
+  - Fix: PVR channel shortcuts play the channel
+  - Fix: edits to an item a visible condition hides are kept on save
+  - Fix: a damaged userdata file falls back to skin defaults, keeping a .bak copy
+  - Fix: picking a new shortcut replaces the previous item's visible condition
+  - Fix: custom widget includes are built for every widget slot
+  - Fix: editing in a subdialog stays on the item it was opened for
+  - Misc fixes and improvements
 
-3.0.4~beta1
-  - Fix: a shortcut picked from the groupings keeps the conditions on its actions
-
-3.0.3
-  - Fix: a widget picked from a library node takes its type from the node, so add-on nodes are no longer mistyped
-
-3.0.2
-  - Add: skins can restyle the DialogSelect pickers with a skinshortcuts-picker property and ListItem metadata
-  - Add: skins can define the management dialog context menu, the buttons it lists and where it opens
-  - Add: skins can retire a widget, background or property in an overrides block and point saved menus at its replacement
-  - Add: icon overrides name a source folder, so a skin's own icons replace the Kodi defaults, packed or loose
-  - Add: a rename attribute on a widget picker button prompts for a custom widget label
-  - Fix: property conditions combine + and | as Kodi does, and an expression reference expands as a single term
-  - Fix: the includes file is written with unix line endings on every platform
-  - Fix: the skin reloads only when a rebuild changes the includes
-  - Fix: the picker keeps its place when it reopens instead of jumping back to the current selection
-  - Fix: backgrounds that open a browse or playlist dialog get the same folder arrow as groups
         </news>
-      <platform>all</platform>
-      <license>GPL-2.0-only</license>
-      <forum>https://forum.kodi.tv/showthread.php?tid=383314</forum>
-      <source>https://github.com/MikeSiLVO/script.skinshortcuts</source>
-      <assets>
-        <icon>resources/media/icon.png</icon>
-        <fanart>resources/media/fanart.jpg</fanart>
-      </assets>
-      <summary lang="cs_CZ">Vlastní nabídky, vlastnosti a grafika pro vzhledy</summary>
-      <summary lang="en_GB">Custom menus, properties, and artwork for skins</summary>
-      <summary lang="es_ES">Menús, propiedades y arte personalizado para skins</summary>
-      <summary lang="hu_HU">Egyéni menük, tulajdonságok és képek a felszínekhez</summary>
-      <summary lang="it_IT">Menu personalizzati, proprietà e grafica per le skin</summary>
-      <summary lang="pl_PL">Niestandardowe menu, właściwości i grafika dla skórek</summary>
-      <summary lang="ru_RU">Пользовательские меню, свойства и иллюстрации для обложек</summary>
-      <summary lang="zh_CN">皮肤自定义菜单、属性与艺术图</summary>
-      <description lang="ar_SA">إضافة مخصصه للمظهر لتوفير إدارة بسيطة للودجيت "الأقسام" و الاختصارات على الشاشة (تتطلب دعم المظهر لها)</description>
-      <description lang="bs_BA">Dodatak za skinove koji omogućava jednostavno upravljanje i prikaz korisničkih prečica (potrebna je podrška za skinove)</description>
-      <description lang="cs_CZ">Doplněk pro vzhledy poskytující jednoduchou správu a vypisování uživatelských zkratek (vyžaduje podporu vzhledu)</description>
-      <description lang="da_DK">Add-on til skins der giver enkel styring og lister over brugergenveje (kræver skin-understøttelse)</description>
-      <description lang="de_DE">Addon für Skins zum einfachen Verwalten und Anzeigen von benutzerdefinierten Verknüpfungen (erfordert Skinunterstützung)</description>
-      <description lang="el_GR">Πρόσθετο για κελύφη, το οποίο παρέχει έναν απλό τρόπο διαχείρισης και κατηγοριοποίησης των συντομεύσεων του χρήστη (πρέπει να υποστηρίζεται από το κέλυφος)</description>
-      <description lang="en_GB">Add-on for skins to provide simple managing and listing of user shortcuts (requires skin support)</description>
-      <description lang="en_NZ">Add-on for skins to provide simple managing and listing of user shortcuts (requires skin support)</description>
-      <description lang="en_US">Add-on for skins to provide simple managing and listing of user shortcuts (requires skin support)</description>
-      <description lang="es_ES">Complemento para skins para proporcionar una gestión y listado sencillo de accesos directos de usuario (requiere que el skin lo soporte)</description>
-      <description lang="et_EE">Lisamoodul, mis võimaldab lisada ja redigeerida rüü menüüelemente ja oma otseteid (vajab rüü tuge)</description>
-      <description lang="fi_FI">Lisäosa, jonka avulla ulkoasut voivat tarjota käyttäjille helpon tavan hallita ja mukauttaa valikoita ja pikavalintoja (vaatii ulkoasukohtaisen tuen).</description>
-      <description lang="fr_CA">Addiciel pour habillages qui fournit une gestion simple et un listage des raccourcis utilisateurs (exige la prise en charge de l'habillage)</description>
-      <description lang="fr_FR">Module complémentaire pour les skins pour fournir une gestion et une liste simples de raccourcis utilisateur (nécessite la prise en charge des skins)</description>
-      <description lang="gl_ES">Complemento que fornece aos temas dunha xestión sinxela dos atallos dos usuarios (require soporte do tema)</description>
-      <description lang="hr_HR">Dodatak za presvlake koji omogućuje jednostavno upravljanje i prikaz prečaca korisnika (zahtijeva podršku presvlake)</description>
-      <description lang="hu_HU">Felszín kiegészítő amely könnyen kezelhetővé és listázhatóvá teszi a felhasználói parancsikonokat (Felszín támogatás szükséges)</description>
-      <description lang="is_IS">Viðbót fyrir viðmót til að halda utan um flýtivísa og fá yfirlit yfir þá (þarfnast stuðnings frá viðmóti)</description>
-      <description lang="it_IT">Add-on per skin per fornire una semplice gestione ed elenco delle scorciatoie utente (richiede il supporto della skin)</description>
-      <description lang="ko_KR">사용자 단축키의 간단한 관리 및 목록을 제공하는 스킨용 애드온(스킨 지원 필요)</description>
-      <description lang="lt_LT">Priedas teminėms išvaizdoms, kad jos turėtų galimybę paprastai tvarkyti ir atvaizduoti vartotojo sukurtas nuorodas (reikalingas teminės išvaizdos palaikymas)</description>
-      <description lang="nb_NO">Tillegg for enkel administrering og opplisting av bruker-snarveier i tema (krever støtte i tema)</description>
-      <description lang="nl_NL">Add-on voor skins om te voorzien in het eenvoudig beheren en sorteren van gebruikers snelkoppelingen (vereist skin ondersteuning)</description>
-      <description lang="pl_PL">Wtyczka dla skór, która umożliwia proste zarządzanie i tworzenie list skrótów użytkownika (wymaga wsparcia skóry)</description>
-      <description lang="pt_BR">Add-on para que as skins possam prover gerenciamento de lista de atalhos para o menu principal (requer suporte da skin)</description>
-      <description lang="pt_PT">Um add-on que permite que os temas tenham recursos simples para gerir e listar atalhos de utilizadores (é necessário suporte do tema)</description>
-      <description lang="ru_RU">Дополнение для обложек, предоставляющее простой способ управления пользовательскими ярлыками (требуется поддержка обложкой)</description>
-      <description lang="sk_SK">Doplnok poskytujúci jednoduchý manažment zoznamu užívateľských odkazov (vyžaduje podporu v doplnku pre vzhľad)</description>
-      <description lang="sv_SE">Skinntillägg som tillhandahåller enkel hantering och översikt av användargenvägar (om skinnet stöder det)</description>
-      <description lang="zh_CN">用于皮肤的插件，提供简易的用户快捷方式管理和列表展示（需要皮肤支持）</description>
-      <description lang="zh_TW">插件为皮肤提供了简单的管理和用户连接方式列表 (需要皮肤支持)</description>
+        <platform>all</platform>
+        <license>GPL-2.0-only</license>
+        <forum>https://forum.kodi.tv/showthread.php?tid=383314</forum>
+        <source>https://github.com/MikeSiLVO/script.skinshortcuts</source>
+        <assets>
+            <icon>resources/media/icon.png</icon>
+            <fanart>resources/media/fanart.jpg</fanart>
+        </assets>
+        <summary lang="cs_CZ">Vlastní nabídky, vlastnosti a grafika pro vzhledy</summary>
+        <summary lang="en_GB">Custom menus, properties, and artwork for skins</summary>
+        <summary lang="es_ES">Menús, propiedades y arte personalizado para skins</summary>
+        <summary lang="hu_HU">Egyéni menük, tulajdonságok és képek a felszínekhez</summary>
+        <summary lang="it_IT">Menu personalizzati, proprietà e grafica per le skin</summary>
+        <summary lang="pl_PL">Niestandardowe menu, właściwości i grafika dla skór</summary>
+        <summary lang="ru_RU">Пользовательские меню, свойства и иллюстрации для обложек</summary>
+        <summary lang="zh_CN">皮肤自定义菜单、属性与艺术图</summary>
+        <description lang="ar_SA">إضافة مخصصه للمظهر لتوفير إدارة بسيطة للودجيت &quot;الأقسام&quot; و الاختصارات على الشاشة (تتطلب دعم المظهر لها)</description>
+        <description lang="bs_BA">Dodatak za skinove koji omogućava jednostavno upravljanje i prikaz korisničkih prečica (potrebna je podrška za skinove)</description>
+        <description lang="cs_CZ">Doplněk pro vzhledy poskytující jednoduchou správu a vypisování uživatelských zkratek (vyžaduje podporu vzhledu)</description>
+        <description lang="da_DK">Add-on til skins der giver enkel styring og lister over brugergenveje (kræver skin-understøttelse)</description>
+        <description lang="de_DE">Addon für Skins zum einfachen Verwalten und Anzeigen von benutzerdefinierten Verknüpfungen (erfordert Skinunterstützung)</description>
+        <description lang="el_GR">Πρόσθετο για κελύφη, το οποίο παρέχει έναν απλό τρόπο διαχείρισης και κατηγοριοποίησης των συντομεύσεων του χρήστη (πρέπει να υποστηρίζεται από το κέλυφος)</description>
+        <description lang="en_GB">Add-on for skins to provide simple managing and listing of user shortcuts (requires skin support)</description>
+        <description lang="en_NZ">Add-on for skins to provide simple managing and listing of user shortcuts (requires skin support)</description>
+        <description lang="en_US">Add-on for skins to provide simple managing and listing of user shortcuts (requires skin support)</description>
+        <description lang="es_ES">Complemento para skins para proporcionar una gestión y listado sencillo de accesos directos de usuario (requiere que el skin lo soporte)</description>
+        <description lang="et_EE">Lisamoodul, mis võimaldab lisada ja redigeerida rüü menüüelemente ja oma otseteid (vajab rüü tuge)</description>
+        <description lang="fi_FI">Lisäosa, jonka avulla ulkoasut voivat tarjota käyttäjille helpon tavan hallita ja mukauttaa valikoita ja pikavalintoja (vaatii ulkoasukohtaisen tuen).</description>
+        <description lang="fr_CA">Addiciel pour habillages qui fournit une gestion simple et un listage des raccourcis utilisateurs (exige la prise en charge de l&apos;habillage)</description>
+        <description lang="fr_FR">Module complémentaire pour les skins pour fournir une gestion et une liste simples de raccourcis utilisateur (nécessite la prise en charge des skins)</description>
+        <description lang="gl_ES">Complemento que fornece aos temas dunha xestión sinxela dos atallos dos usuarios (require soporte do tema)</description>
+        <description lang="hr_HR">Dodatak za presvlake koji omogućuje jednostavno upravljanje i prikaz prečaca korisnika (zahtijeva podršku presvlake)</description>
+        <description lang="hu_HU">Felszín kiegészítő amely könnyen kezelhetővé és listázhatóvá teszi a felhasználói parancsikonokat (Felszín támogatás szükséges)</description>
+        <description lang="is_IS">Viðbót fyrir viðmót til að halda utan um flýtivísa og fá yfirlit yfir þá (þarfnast stuðnings frá viðmóti)</description>
+        <description lang="it_IT">Add-on per skin per fornire una semplice gestione ed elenco delle scorciatoie utente (richiede il supporto della skin)</description>
+        <description lang="ko_KR">사용자 단축키의 간단한 관리 및 목록을 제공하는 스킨용 애드온(스킨 지원 필요)</description>
+        <description lang="lt_LT">Priedas teminėms išvaizdoms, kad jos turėtų galimybę paprastai tvarkyti ir atvaizduoti vartotojo sukurtas nuorodas (reikalingas teminės išvaizdos palaikymas)</description>
+        <description lang="nb_NO">Tillegg for enkel administrering og opplisting av bruker-snarveier i tema (krever støtte i tema)</description>
+        <description lang="nl_NL">Add-on voor skins om te voorzien in het eenvoudig beheren en sorteren van gebruikers snelkoppelingen (vereist skin ondersteuning)</description>
+        <description lang="pl_PL">Wtyczka dla skór, która umożliwia proste zarządzanie i tworzenie list skrótów użytkownika (wymaga wsparcia skóry)</description>
+        <description lang="pt_BR">Add-on para que as skins possam prover gerenciamento de lista de atalhos para o menu principal (requer suporte da skin)</description>
+        <description lang="pt_PT">Um add-on que permite que os temas tenham recursos simples para gerir e listar atalhos de utilizadores (é necessário suporte do tema)</description>
+        <description lang="ru_RU">Дополнение для обложек, предоставляющее простой способ управления пользовательскими ярлыками (требуется поддержка обложкой)</description>
+        <description lang="sk_SK">Doplnok poskytujúci jednoduchý manažment zoznamu užívateľských odkazov (vyžaduje podporu v doplnku pre vzhľad)</description>
+        <description lang="sv_SE">Skinntillägg som tillhandahåller enkel hantering och översikt av användargenvägar (om skinnet stöder det)</description>
+        <description lang="zh_CN">用于皮肤的插件，提供简易的用户快捷方式管理和列表展示（需要皮肤支持）</description>
+        <description lang="zh_TW">插件为皮肤提供了简单的管理和用户连接方式列表 (需要皮肤支持)</description>
     </extension>
-  </addon>
-  <addon id="script.tinyppi" name="TinyPPI" version="2.19.6" provider-name="jamal2362, IkHadHonger">
+</addon>
+
+<addon id="script.tinyppi" name="TinyPPI" version="2.19.6" provider-name="jamal2362, IkHadHonger">
     <requires>
-      <import addon="xbmc.python" version="3.0.0" />
-      <import addon="script.module.sidedata" version="1.6.0" />
+        <import addon="xbmc.python" version="3.0.0" />
+        <import addon="script.module.sidedata" version="1.6.0" />
     </requires>
     <extension point="xbmc.service" library="resources/lib/service/start.py" />
     <extension point="xbmc.python.script" library="main.py">
-      <provides>executable</provides>
+        <provides>executable</provides>
     </extension>
     <extension point="xbmc.addon.metadata">
-      <platform>linux</platform>
-      <license>AGPL-3.0-or-later</license>
-      <source>https://github.com/CE-Repo/script.tinyppi</source>
-      <summary lang="ar">يعرض معلومات مخصصة عن عملية المشغل</summary>
-      <summary lang="de">Zeigt benutzerdefinierte Prozessinformationen an</summary>
-      <summary lang="en">Displays custom player process information</summary>
-      <summary lang="hu">Egyéni lejátszó-folyamatinformációkat jelenít meg</summary>
-      <summary lang="zh">显示自定义播放器进程信息</summary>
-      <description lang="ar">يفتح نافذة مستقلة لمعلومات العملية. تعرض هذه النافذة تفاصيل برنامج الترميز (Codec) والفيديو والصوت الخاصة بالوسائط التي يتم تشغيلها حاليًا.</description>
-      <description lang="de">Öffnet ein eigenes Prozessinformationen-Fenster. Dieses enthält Codec-, Video- und Audio-Details zum aktuell abgespielten Medium.</description>
-      <description lang="en">Opens a separate process information window. This window displays codec, video, and audio details for the currently playing media.</description>
-      <description lang="hu">Megnyit egy külön folyamatinformációs ablakot. Ez az ablak az aktuálisan lejátszott média kodek-, videó- és hangadatait jeleníti meg.</description>
-      <description lang="zh">打开一个独立的进程信息窗口。此窗口显示当前播放媒体的编解码器、视频和音频详细信息。</description>
-      <news>v2.19.6 (Jellyfin fork)
+        <platform>linux</platform>
+        <license>AGPL-3.0-or-later</license>
+        <source>https://github.com/CE-Repo/script.tinyppi</source>
+        <summary lang="ar">يعرض معلومات مخصصة عن عملية المشغل</summary>
+        <summary lang="de">Zeigt benutzerdefinierte Prozessinformationen an</summary>
+        <summary lang="en">Displays custom player process information</summary>
+        <summary lang="hu">Egyéni lejátszó-folyamatinformációkat jelenít meg</summary>
+        <summary lang="zh">显示自定义播放器进程信息</summary>
+        <description lang="ar">يفتح نافذة مستقلة لمعلومات العملية. تعرض هذه النافذة تفاصيل برنامج الترميز (Codec) والفيديو والصوت الخاصة بالوسائط التي يتم تشغيلها حاليًا.</description>
+        <description lang="de">Öffnet ein eigenes Prozessinformationen-Fenster. Dieses enthält Codec-, Video- und Audio-Details zum aktuell abgespielten Medium.</description>
+        <description lang="en">Opens a separate process information window. This window displays codec, video, and audio details for the currently playing media.</description>
+        <description lang="hu">Megnyit egy külön folyamatinformációs ablakot. Ez az ablak az aktuálisan lejátszott média kodek-, videó- és hangadatait jeleníti meg.</description>
+        <description lang="zh">打开一个独立的进程信息窗口。此窗口显示当前播放媒体的编解码器、视频和音频详细信息。</description>
+
+        <news>v2.19.6 (Jellyfin fork)
 - Show the selected film, series or episode overview before playback.
 - Include plot, tagline, rating badges, age classification, directors and cast where available.
 - Share the live Overview renderer and keep existing playback and watched controls.</news>
-      <assets>
-        <icon>icon.png</icon>
-        <fanart>fanart.png</fanart>
-      </assets>
+        <assets>
+            <icon>icon.png</icon>
+            <fanart>fanart.png</fanart>
+        </assets>
     </extension>
-  </addon>
-  <addon id="service.tailscale" name="Tailscale (IkHadHonger)" version="22.0.12.100" provider-name="Team LibreELEC, Team CoreELEC, IkHadHonger">
-    <requires>
-      <import addon="xbmc.python" version="3.0.0" />
-    </requires>
-    <extension point="xbmc.service" library="default.py" />
-    <extension point="xbmc.addon.metadata">
-      <platform>linux</platform>
-      <license>GPL-2.0-only; BSD-3-Clause (Tailscale binaries)</license>
-      <source>https://github.com/IkHadHonger/repository.silvo/tree/cube-custom/sources/service.tailscale</source>
-      <summary lang="en">Tailscale 1.102.4 for CoreELEC 22 ARM64 with Kodi 22 settings support</summary>
-      <summary lang="nl_NL">Tailscale 1.102.4 voor CoreELEC 22 ARM64 met ondersteuning voor Kodi 22-instellingen</summary>
-      <description lang="en">CoreELEC 22/Piers ARM64 only. Keeps the official addon ID, settings and tailnet state. Supports settings XML formats 1-4 and defaults to retaining CoreELEC DNS. Select this repository for updates to retain the fork fixes.</description>
-      <news>22.0.12.100: Correct addon version ordering against CoreELEC 22.0.12.9. Includes official Tailscale 1.102.4 ARM64, settings XML version 4 support, optional Tailscale DNS disabled by default, and persistent daemon state directory. Preserves existing login and configuration.</news>
-      <assets>
-        <icon>icon.png</icon>
-      </assets>
-    </extension>
-  </addon>
-  <addon id="skin.aeon.nox.silvo" version="11.0.0.7" name="Aeon Nox: SiLVO" provider-name="SiLVO">
-    <requires>
-      <import addon="xbmc.gui" version="5.18.0" />
-      <import addon="script.skinshortcuts" version="3.0.2" />
-      <import addon="script.skin.info.service" version="2.0.1~beta3" />
-      <import addon="resource.images.studios.white" version="0.0.1" />
-      <import addon="resource.images.recordlabels.white" version="0.0.1" />
-      <import addon="resource.images.weathericons.white" version="0.0.1" />
-    </requires>
-    <extension point="xbmc.gui.skin" debugging="false">
-      <res width="1920" height="1080" aspect="16:9" default="true" folder="16x9" />
-    </extension>
-    <extension point="xbmc.addon.metadata">
-      <platform>all</platform>
-      <license>CC BY-NC-SA 4.0</license>
-      <forum>https://forum.kodi.tv/showthread.php?tid=210069</forum>
-      <website>https://github.com/MikeSiLVO/skin.aeon.nox.silvo</website>
-      <source>https://github.com/MikeSiLVO/skin.aeon.nox.silvo</source>
-      <assets>
-        <icon>resources/icon.png</icon>
-        <fanart>resources/fanart.jpg</fanart>
-        <screenshot>resources/screenshots/screenshot-01.jpg</screenshot>
-        <screenshot>resources/screenshots/screenshot-02.jpg</screenshot>
-        <screenshot>resources/screenshots/screenshot-03.jpg</screenshot>
-        <screenshot>resources/screenshots/screenshot-04.jpg</screenshot>
-        <screenshot>resources/screenshots/screenshot-05.jpg</screenshot>
-        <screenshot>resources/screenshots/screenshot-06.jpg</screenshot>
-        <screenshot>resources/screenshots/screenshot-07.jpg</screenshot>
-      </assets>
-      <news>
+</addon>
+
+<addon id="service.tailscale" name="Tailscale (IkHadHonger)" version="22.0.12.100" provider-name="Team LibreELEC, Team CoreELEC, IkHadHonger">
+  <requires>
+    <import addon="xbmc.python" version="3.0.0"/>
+  </requires>
+  <extension point="xbmc.service" library="default.py"/>
+  <extension point="xbmc.addon.metadata">
+    <platform>linux</platform>
+    <license>GPL-2.0-only; BSD-3-Clause (Tailscale binaries)</license>
+    <source>https://github.com/IkHadHonger/repository.silvo/tree/cube-custom/sources/service.tailscale</source>
+    <summary lang="en">Tailscale 1.102.4 for CoreELEC 22 ARM64 with Kodi 22 settings support</summary>
+    <summary lang="nl_NL">Tailscale 1.102.4 voor CoreELEC 22 ARM64 met ondersteuning voor Kodi 22-instellingen</summary>
+    <description lang="en">CoreELEC 22/Piers ARM64 only. Keeps the official addon ID, settings and tailnet state. Supports settings XML formats 1-4 and defaults to retaining CoreELEC DNS. Select this repository for updates to retain the fork fixes.</description>
+    <news>22.0.12.100: Correct addon version ordering against CoreELEC 22.0.12.9. Includes official Tailscale 1.102.4 ARM64, settings XML version 4 support, optional Tailscale DNS disabled by default, and persistent daemon state directory. Preserves existing login and configuration.</news>
+    <assets><icon>icon.png</icon></assets>
+  </extension>
+</addon>
+
+<addon id="skin.aeon.nox.silvo" version="11.0.0.8" name="Aeon Nox: SiLVO" provider-name="SiLVO">
+	<requires>
+		<import addon="xbmc.gui" version="5.18.0" />
+		<import addon="script.skinshortcuts" version="3.0.4" />
+		<import addon="script.skin.info.service" version="2.0.1~beta13" />
+		<import addon="resource.images.studios.white" version="0.0.1" />
+		<import addon="resource.images.recordlabels.white" version="0.0.1" />
+		<import addon="resource.images.weathericons.white" version="0.0.1" />
+	</requires>
+
+	<extension point="xbmc.gui.skin" debugging="false">
+		<res width="1920" height="1080" aspect="16:9" default="true" folder="16x9" />
+		
+	</extension>
+
+	<extension point="xbmc.addon.metadata">
+		<platform>all</platform>
+		<license>CC BY-NC-SA 4.0</license>
+		<forum>https://forum.kodi.tv/showthread.php?tid=210069</forum>
+		<website>https://github.com/MikeSiLVO/skin.aeon.nox.silvo</website>
+		<source>https://github.com/MikeSiLVO/skin.aeon.nox.silvo</source>
+
+		<assets>
+			<icon>resources/icon.png</icon>
+			<fanart>resources/fanart.jpg</fanart>
+			<screenshot>resources/screenshots/screenshot-01.jpg</screenshot>
+			<screenshot>resources/screenshots/screenshot-02.jpg</screenshot>
+			<screenshot>resources/screenshots/screenshot-03.jpg</screenshot>
+			<screenshot>resources/screenshots/screenshot-04.jpg</screenshot>
+			<screenshot>resources/screenshots/screenshot-05.jpg</screenshot>
+			<screenshot>resources/screenshots/screenshot-06.jpg</screenshot>
+			<screenshot>resources/screenshots/screenshot-07.jpg</screenshot>
+		</assets>
+
+		<news>
+11.0.0~beta7
+- Replace Artist Slideshow with Skin Info Service artist fanart
+- Fix TMDb search not opening the info dialog
+- Fix searches and music video lists for names with &amp;, commas or quotes
+- Fix missing PVR seek bar edit markers
+- Fix the music TriPanel user rating flag
+- Fix webrip case art on the live background
+- Performance improvements for low-power devices
+- Translation updates
+
 11.0.0~beta6
 - Add saved searches to the PVR breadcrumb
 - Load only the similar titles the info dialog shows
@@ -588,79 +626,81 @@ v1.5.0: publishes the rest of libdovi's RPU metadata: L8 saturation/hue trim vec
 - Various widget, view, layout, label, and scrolling fixes
 - Translation updates
 		</news>
-      <summary lang="af_ZA">Geskep deur BigNoid, Modded deur SiLVO, en Widgets deur Mr. V</summary>
-      <summary lang="cs_CZ">Vytvořil BigNoid, upravil SiLVO, widgety od Mr. V</summary>
-      <summary lang="de_DE">Erstellt von BigNoid, modifiziert von SiLVO, Widgets von Mr. V</summary>
-      <summary lang="el_GR">Created by BigNoid, Modded by SiLVO, and Widgets by Mr. V</summary>
-      <summary lang="en_AU">Aeon Nox: SiLVO - iHH Custom</summary>
-      <summary lang="en_GB">Aeon Nox: SiLVO - iHH Custom</summary>
-      <summary lang="en_NZ">Aeon Nox: SiLVO - iHH Custom</summary>
-      <summary lang="en_US">Aeon Nox: SiLVO - iHH Custom</summary>
-      <summary lang="es_ES">Creada por BigNoid, Modificada por SiLVO, y Widgets por Mr. V</summary>
-      <summary lang="et_EE">Looja: BigNoid, muutja: SiLVO, ja vidinad: Mr. V</summary>
-      <summary lang="fi_FI">BigNoidin tekemä ja SILVOn muokkaama. Widgetit Mr. V:ltä</summary>
-      <summary lang="fr_CA">Créé par BigNoid, modifié by SiLVO, et gadgets logiciels par Mr. V</summary>
-      <summary lang="fr_FR">Créé par BigNoid, Moddé par SiLVO, avec les widgets de M. V</summary>
-      <summary lang="gl_ES">Created by BigNoid, Modded by SiLVO, and Widgets by Mr. V</summary>
-      <summary lang="he_IL">המעטפת נוצרה על ידי BigNoid, Modded by SiLVO, and והיישומונים על ידי Mr. VLO</summary>
-      <summary lang="hu_HU">Created by BigNoid, Modded by SiLVO, and Widgets by Mr. V</summary>
-      <summary lang="is_IS">Útbúið af BigNoid, breytt af SiLVO, viðmótshlutar eftir Mr. V</summary>
-      <summary lang="it_IT">Creato da BigNoid, modificato da SiLVO e con i widget di Mr. V</summary>
-      <summary lang="ko_KR">Created by BigNoid, Modded by SiLVO, and Widgets by Mr. V</summary>
-      <summary lang="lt_LT">Sukūrė BigNoid, modifikavo SiLVO bei valdiklius pridėjo Mr. V</summary>
-      <summary lang="ms_MY">Created by BigNoid, Modded by SiLVO, and Widgets by Mr. V</summary>
-      <summary lang="nb_NO">Laget av BigNoid, modifisert av SiLVO, og miniprogrammer av Mr. V.</summary>
-      <summary lang="nl_NL">Aeon Nox: SiLVO - iHH Custom</summary>
-      <summary lang="pl_PL">Stworzona przez BigNoid, zmodyfikowana przez SiLVO, z widżetami autorstwa Mr. V</summary>
-      <summary lang="pt_BR">Criado por BigNoid, Modificado por SiLVO e Widgets por Mr. V</summary>
-      <summary lang="pt_PT">Criado por BigNoid, Modded por SiLVO, e Widgets por Mr. V</summary>
-      <summary lang="ro_RO">Creat de BigNoid, Modificat de SiLVO, și widget-uri deMr. V</summary>
-      <summary lang="ru_RU">Автор: BigNoid, модификация: SiLVO, виджеты: Mr. V</summary>
-      <summary lang="sk_SK">Vytvoril BigNoid, Upravil SiLVO, miniaplikácie vytvoril Mr. V</summary>
-      <summary lang="sv_SE">Created by BigNoid, Modded by SiLVO, and Widgets by Mr. V</summary>
-      <summary lang="th_TH">Created by BigNoid, Modded by SiLVO, and Widgets by Mr. V</summary>
-      <summary lang="tr_TR">BigNoid tarafından oluşturuldu; Modlar SILVO'dan, Widget'lar Mr. V'den.</summary>
-      <summary lang="uk_UA">Автор: BigNoid, модифікації: SiLVO, віджети: Mr. V</summary>
-      <summary lang="vi_VN">Created by BigNoid, Modded by SiLVO, and Widgets by Mr. V - Sự trở về</summary>
-      <summary lang="zh_CN">由 BigNoid 原创制作，SiLVO 负责改版优化，小组件由 Mr. V 开发</summary>
-      <summary lang="zh_TW">由BigNoid原創，SiLVO進行改造，以及由Mr. V製作的小工具</summary>
-      <description lang="af_ZA">Heeltemal oor ontwerp om 'n moderne aansig te skep, terwyl die klassieke Aeon gevoel behou word.</description>
-      <description lang="cs_CZ">Kompletně přepracováno pro moderní vzhled při zachování klasického stylu Aeon.</description>
-      <description lang="de_DE">Komplett neu designed für ein modernes Aussehen und das klassische Aeon-Feeling beizubehalten.</description>
-      <description lang="el_GR">Πλήρως επανασχεδιασμένο για να προσφέρει μια μοντέρνα αισθητική, διατηρώντας ταυτόχρονα την κλασική ομορφιά του Aeon.</description>
-      <description lang="en_AU">Custom Aeon Nox: SiLVO build for Kodi 22 with Dolby Vision FEL/MEL integration, TinyPPI and VS10 OSD controls, enhanced media flags, and extended playlist and set statistics.</description>
-      <description lang="en_GB">Custom Aeon Nox: SiLVO build for Kodi 22 with Dolby Vision FEL/MEL integration, TinyPPI and VS10 OSD controls, enhanced media flags, and extended playlist and set statistics.</description>
-      <description lang="en_NZ">Custom Aeon Nox: SiLVO build for Kodi 22 with Dolby Vision FEL/MEL integration, TinyPPI and VS10 OSD controls, enhanced media flags, and extended playlist and set statistics.</description>
-      <description lang="en_US">Custom Aeon Nox: SiLVO build for Kodi 22 with Dolby Vision FEL/MEL integration, TinyPPI and VS10 OSD controls, enhanced media flags, and extended playlist and set statistics.</description>
-      <description lang="es_ES">Completamente rediseñado para crear un aspecto moderno, pero conservando el toque clásico Aeon.</description>
-      <description lang="et_EE">Täielikult uuesti disainitud, et luua tänapäevane välimus samas säilitades klassikaline Aeoni tunnetus.</description>
-      <description lang="fi_FI">Täysin uudelleensuunniteltu moderni ulkoasu, kuitenkin tuntuen klassiselta Aeonilta.</description>
-      <description lang="fr_CA">Complètement remanié pour créer une apparence moderne, tout en conservant l’esprit classique d’Aeon.</description>
-      <description lang="fr_FR">Totalement revu pour créer un look moderne, en gardant l'expérience Aeon.</description>
-      <description lang="gl_ES">Redeseñado completamente para crear unha aparencia moderna ao tempo que mantén a sensación do clásico Aeon.</description>
-      <description lang="he_IL">עיצוב חדש היוצר מראה מודרני אך משמר את ההרגשה של Aeon הקלאסי.</description>
-      <description lang="hr_HR">Potpuno preoblikovan moderan izgled, uz zadržani klasični Aeon osjećaj.</description>
-      <description lang="hu_HU">Teljesen áttervezett modern kinézet, de megtartva a klasszikus Aeon érzetet.</description>
-      <description lang="is_IS">Endurhannað nútímalegt útlit í anda Aeon.</description>
-      <description lang="it_IT">Completamente riprogettato per creare un look moderno, pur mantenendo lo stile classico di Aeon.</description>
-      <description lang="ko_KR">고전적인 Aeon 느낌을 유지하면서 현대적인 모습으로 완전히 다시 디자인하여 만들었습니다.</description>
-      <description lang="lt_LT">Pilnai atnaujinta, kad sukurtų modernią išvaizdą, išlaikant klasikinio Aeon pojūtį.</description>
-      <description lang="ms_MY">Direka semula sepenuhnya untuk hasilkan penampilan modern, tetapi masih mengekalkan penampilan Aeon klasik.</description>
-      <description lang="nb_NO">Helt redesignet for å tilby en moderne utforming, samtidig som den klassiske Aeon-følelsen er beholdt.</description>
-      <description lang="nl_NL">Custom Aeon Nox: SiLVO build for Kodi 22 with Dolby Vision FEL/MEL integration, TinyPPI and VS10 OSD controls, enhanced media flags, and extended playlist and set statistics.</description>
-      <description lang="pl_PL">Całkowicie przeprojektowana, aby nadać jej nowoczesny wygląd, zachowując jednocześnie klasyczny charakter marki Aeon.</description>
-      <description lang="pt_BR">Design completamente novo para criar um look moderno, mantendo o feeling do Aeon Clássico.</description>
-      <description lang="pt_PT">Completamente redesenhado para criar um visual moderno enquanto retém o toque clássico Aeon.</description>
-      <description lang="ro_RO">Complet reproiectat pentru a crea o înfățișare modernă, dar totuși păstrând atmosfera clasică Aeon.</description>
-      <description lang="ru_RU">Полностью переработан, чтобы создать современный облик, сохраняя при этом классическое чувство Aeon.</description>
-      <description lang="sk_SK">Kompletne prepracovaný dizajn s moderným vzhľadom pri zachovaní klasického štýlu Aeon.</description>
-      <description lang="sv_SE">Totalt omarbetad för att skapa ett modernt utseende, samtidigt som man behåller den klassiska Aeon-känslan.</description>
-      <description lang="th_TH">การออกแบบใหม่หมดจด เพื่อสร้างรูปลักษณ์ทันสมัย, ​​ขณะที่ยังคงความรู้สึกคลาสสิคของ Aeon.</description>
-      <description lang="tr_TR">Modern görünüme kavuşturmak için baştan tasarlandı, klasik Aeon hissi korundu</description>
-      <description lang="uk_UA">Повністю перероблений для створення сучасного вигляду, зберігаючи класичне відчуття Aeon.</description>
-      <description lang="vi_VN">Thiết kế lại hoàn toàn để tạo nên một phong cách hiện đại, trong khi đó vẫn duy trì một cảm giác Aeon cổ điển.</description>
-      <description lang="zh_CN">全面重新设计，打造现代时尚外观，同时保留 Aeon 系列经典质感。</description>
-      <description lang="zh_TW">完全的翻新設計以創造現代化的視覺感受，同時仍維持Aeon的經典外觀。</description>
-    </extension>
-  </addon>
+
+		<summary lang="af_ZA">Geskep deur BigNoid, Modded deur SiLVO, en Widgets deur Mr. V</summary>
+		<summary lang="cs_CZ">Vytvořil BigNoid, upravil SiLVO, widgety od Mr. V</summary>
+		<summary lang="de_DE">Erstellt von BigNoid, modifiziert von SiLVO, Widgets von Mr. V</summary>
+		<summary lang="el_GR">Created by BigNoid, Modded by SiLVO, and Widgets by Mr. V</summary>
+		<summary lang="en_AU">Aeon Nox: SiLVO - iHH Custom</summary>
+		<summary lang="en_GB">Aeon Nox: SiLVO - iHH Custom</summary>
+		<summary lang="en_NZ">Aeon Nox: SiLVO - iHH Custom</summary>
+		<summary lang="en_US">Aeon Nox: SiLVO - iHH Custom</summary>
+		<summary lang="es_ES">Creada por BigNoid, Modificada por SiLVO, y Widgets por Mr. V</summary>
+		<summary lang="et_EE">Looja: BigNoid, muutja: SiLVO, ja vidinad: Mr. V</summary>
+		<summary lang="fi_FI">BigNoidin tekemä ja SILVOn muokkaama. Widgetit Mr. V:ltä</summary>
+		<summary lang="fr_CA">Créé par BigNoid, modifié by SiLVO, et gadgets logiciels par Mr. V</summary>
+		<summary lang="fr_FR">Créé par BigNoid, Moddé par SiLVO, avec les widgets de M. V</summary>
+		<summary lang="gl_ES">Created by BigNoid, Modded by SiLVO, and Widgets by Mr. V</summary>
+		<summary lang="he_IL">המעטפת נוצרה על ידי BigNoid, Modded by SiLVO, and והיישומונים על ידי Mr. VLO</summary>
+		<summary lang="hu_HU">Created by BigNoid, Modded by SiLVO, and Widgets by Mr. V</summary>
+		<summary lang="is_IS">Útbúið af BigNoid, breytt af SiLVO, viðmótshlutar eftir Mr. V</summary>
+		<summary lang="it_IT">Creato da BigNoid, modificato da SiLVO e con i widget di Mr. V</summary>
+		<summary lang="ko_KR">Created by BigNoid, Modded by SiLVO, and Widgets by Mr. V</summary>
+		<summary lang="lt_LT">Sukūrė BigNoid, modifikavo SiLVO bei valdiklius pridėjo Mr. V</summary>
+		<summary lang="ms_MY">Created by BigNoid, Modded by SiLVO, and Widgets by Mr. V</summary>
+		<summary lang="nb_NO">Laget av BigNoid, modifisert av SiLVO, og miniprogrammer av Mr. V.</summary>
+		<summary lang="nl_NL">Aeon Nox: SiLVO - iHH Custom</summary>
+		<summary lang="pl_PL">Stworzona przez BigNoid, zmodyfikowana przez SiLVO, z widżetami autorstwa Mr. V</summary>
+		<summary lang="pt_BR">Criado por BigNoid, Modificado por SiLVO e Widgets por Mr. V</summary>
+		<summary lang="pt_PT">Criado por BigNoid, Modded por SiLVO, e Widgets por Mr. V</summary>
+		<summary lang="ro_RO">Creat de BigNoid, Modificat de SiLVO, și widget-uri deMr. V</summary>
+		<summary lang="ru_RU">Автор: BigNoid, модификация: SiLVO, виджеты: Mr. V</summary>
+		<summary lang="sk_SK">Vytvoril BigNoid, Upravil SiLVO, miniaplikácie vytvoril Mr. V</summary>
+		<summary lang="sv_SE">Created by BigNoid, Modded by SiLVO, and Widgets by Mr. V</summary>
+		<summary lang="th_TH">Created by BigNoid, Modded by SiLVO, and Widgets by Mr. V</summary>
+		<summary lang="tr_TR">BigNoid tarafından oluşturuldu; Modlar SILVO'dan, Widget'lar Mr. V'den.</summary>
+		<summary lang="uk_UA">Автор: BigNoid, модифікації: SiLVO, віджети: Mr. V</summary>
+		<summary lang="vi_VN">Created by BigNoid, Modded by SiLVO, and Widgets by Mr. V - Sự trở về</summary>
+		<summary lang="zh_CN">由 BigNoid 原创制作，SiLVO 负责改版优化，小组件由 Mr. V 开发</summary>
+		<summary lang="zh_TW">由BigNoid原創，SiLVO進行改造，以及由Mr. V製作的小工具</summary>
+
+		<description lang="af_ZA">Heeltemal oor ontwerp om 'n moderne aansig te skep, terwyl die klassieke Aeon gevoel behou word.</description>
+		<description lang="cs_CZ">Kompletně přepracováno pro moderní vzhled při zachování klasického stylu Aeon.</description>
+		<description lang="de_DE">Komplett neu designed für ein modernes Aussehen und das klassische Aeon-Feeling beizubehalten.</description>
+		<description lang="el_GR">Πλήρως επανασχεδιασμένο για να προσφέρει μια μοντέρνα αισθητική, διατηρώντας ταυτόχρονα την κλασική ομορφιά του Aeon.</description>
+		<description lang="en_AU">Custom Aeon Nox: SiLVO build for Kodi 22 with Dolby Vision FEL/MEL integration, TinyPPI and VS10 OSD controls, enhanced media flags, and extended playlist and set statistics.</description>
+		<description lang="en_GB">Custom Aeon Nox: SiLVO build for Kodi 22 with Dolby Vision FEL/MEL integration, TinyPPI and VS10 OSD controls, enhanced media flags, and extended playlist and set statistics.</description>
+		<description lang="en_NZ">Custom Aeon Nox: SiLVO build for Kodi 22 with Dolby Vision FEL/MEL integration, TinyPPI and VS10 OSD controls, enhanced media flags, and extended playlist and set statistics.</description>
+		<description lang="en_US">Custom Aeon Nox: SiLVO build for Kodi 22 with Dolby Vision FEL/MEL integration, TinyPPI and VS10 OSD controls, enhanced media flags, and extended playlist and set statistics.</description>
+		<description lang="es_ES">Completamente rediseñado para crear un aspecto moderno, pero conservando el toque clásico Aeon.</description>
+		<description lang="et_EE">Täielikult uuesti disainitud, et luua tänapäevane välimus samas säilitades klassikaline Aeoni tunnetus.</description>
+		<description lang="fi_FI">Täysin uudelleensuunniteltu moderni ulkoasu, kuitenkin tuntuen klassiselta Aeonilta.</description>
+		<description lang="fr_CA">Complètement remanié pour créer une apparence moderne, tout en conservant l’esprit classique d’Aeon.</description>
+		<description lang="fr_FR">Totalement revu pour créer un look moderne, en gardant l'expérience Aeon.</description>
+		<description lang="gl_ES">Redeseñado completamente para crear unha aparencia moderna ao tempo que mantén a sensación do clásico Aeon.</description>
+		<description lang="he_IL">עיצוב חדש היוצר מראה מודרני אך משמר את ההרגשה של Aeon הקלאסי.</description>
+		<description lang="hr_HR">Potpuno preoblikovan moderan izgled, uz zadržani klasični Aeon osjećaj.</description>
+		<description lang="hu_HU">Teljesen áttervezett modern kinézet, de megtartva a klasszikus Aeon érzetet.</description>
+		<description lang="is_IS">Endurhannað nútímalegt útlit í anda Aeon.</description>
+		<description lang="it_IT">Completamente riprogettato per creare un look moderno, pur mantenendo lo stile classico di Aeon.</description>
+		<description lang="ko_KR">고전적인 Aeon 느낌을 유지하면서 현대적인 모습으로 완전히 다시 디자인하여 만들었습니다.</description>
+		<description lang="lt_LT">Pilnai atnaujinta, kad sukurtų modernią išvaizdą, išlaikant klasikinio Aeon pojūtį.</description>
+		<description lang="ms_MY">Direka semula sepenuhnya untuk hasilkan penampilan modern, tetapi masih mengekalkan penampilan Aeon klasik.</description>
+		<description lang="nb_NO">Helt redesignet for å tilby en moderne utforming, samtidig som den klassiske Aeon-følelsen er beholdt.</description>
+		<description lang="nl_NL">Custom Aeon Nox: SiLVO build for Kodi 22 with Dolby Vision FEL/MEL integration, TinyPPI and VS10 OSD controls, enhanced media flags, and extended playlist and set statistics.</description>
+		<description lang="pl_PL">Całkowicie przeprojektowana, aby nadać jej nowoczesny wygląd, zachowując jednocześnie klasyczny charakter marki Aeon.</description>
+		<description lang="pt_BR">Design completamente novo para criar um look moderno, mantendo o feeling do Aeon Clássico.</description>
+		<description lang="pt_PT">Completamente redesenhado para criar um visual moderno enquanto retém o toque clássico Aeon.</description>
+		<description lang="ro_RO">Complet reproiectat pentru a crea o înfățișare modernă, dar totuși păstrând atmosfera clasică Aeon.</description>
+		<description lang="ru_RU">Полностью переработан, чтобы создать современный облик, сохраняя при этом классическое чувство Aeon.</description>
+		<description lang="sk_SK">Kompletne prepracovaný dizajn s moderným vzhľadom pri zachovaní klasického štýlu Aeon.</description>
+		<description lang="sv_SE">Totalt omarbetad för att skapa ett modernt utseende, samtidigt som man behåller den klassiska Aeon-känslan.</description>
+		<description lang="th_TH">การออกแบบใหม่หมดจด เพื่อสร้างรูปลักษณ์ทันสมัย, ​​ขณะที่ยังคงความรู้สึกคลาสสิคของ Aeon.</description>
+		<description lang="tr_TR">Modern görünüme kavuşturmak için baştan tasarlandı, klasik Aeon hissi korundu</description>
+		<description lang="uk_UA">Повністю перероблений для створення сучасного вигляду, зберігаючи класичне відчуття Aeon.</description>
+		<description lang="vi_VN">Thiết kế lại hoàn toàn để tạo nên một phong cách hiện đại, trong khi đó vẫn duy trì một cảm giác Aeon cổ điển.</description>
+		<description lang="zh_CN">全面重新设计，打造现代时尚外观，同时保留 Aeon 系列经典质感。</description>
+		<description lang="zh_TW">完全的翻新設計以創造現代化的視覺感受，同時仍維持Aeon的經典外觀。</description>
+	</extension>
+</addon>
 </addons>
