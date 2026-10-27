@@ -539,7 +539,7 @@ v1.5.0: publishes the rest of libdovi's RPU metadata: L8 saturation/hue trim vec
   </extension>
 </addon>
 
-<addon id="skin.aeon.nox.silvo" version="11.0.0.8" name="Aeon Nox: SiLVO" provider-name="SiLVO">
+<addon id="skin.aeon.nox.silvo" version="11.0.0.47" name="Aeon Nox: SiLVO" provider-name="SiLVO">
 	<requires>
 		<import addon="xbmc.gui" version="5.18.0" />
 		<import addon="script.skinshortcuts" version="3.0.4" />
