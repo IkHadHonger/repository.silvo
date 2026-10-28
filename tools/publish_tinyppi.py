@@ -13,6 +13,8 @@ import zipfile
 
 
 def command(*args, cwd):
+    if os.name == 'nt' and args and args[0] == 'npm':
+        args = ('npm.cmd', *args[1:])
     try:
         return subprocess.run(args, cwd=cwd, check=True, text=True, capture_output=True)
     except subprocess.CalledProcessError as error:
