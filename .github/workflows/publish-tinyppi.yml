@@ -1,5 +1,5 @@
 # Publishes each tested newer fork release to both supported channels.
-# Immediate publication requested for TinyPPI 2.21.8.
+# Immediate publication requested for TinyPPI 2.21.9.
 name: Publish tested TinyPPI to both Kodi channels
 on:
   schedule:
