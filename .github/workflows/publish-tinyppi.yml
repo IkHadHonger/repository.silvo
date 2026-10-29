@@ -5,6 +5,8 @@ on:
     - cron: '47 */6 * * *'
   # Also permits an immediate release after a tested TinyPPI merge.
   workflow_dispatch:
+  repository_dispatch:
+    types: [tinyppi-release]
   push:
     branches: [cube-custom]
     paths: ['.github/workflows/publish-tinyppi.yml', 'tools/publish_tinyppi.py']
