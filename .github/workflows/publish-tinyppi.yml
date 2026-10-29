@@ -3,6 +3,7 @@ name: Publish tested TinyPPI to both Kodi channels
 on:
   schedule:
     - cron: '47 */6 * * *'
+  # Also permits an immediate release after a tested TinyPPI merge.
   workflow_dispatch:
   push:
     branches: [cube-custom]
