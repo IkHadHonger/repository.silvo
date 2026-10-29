@@ -85,7 +85,9 @@ def publish(source, repository, branch, channel):
         if key != 'script.tinyppi':
             assert before[key] == after[key], f'Unexpected addon change: {key}'
     command('git', 'add', channel, cwd=repository)
-    command('git', 'commit', '-m', f'Publish tested TinyPPI {release}', cwd=repository)
+    source_revision = command('git', 'rev-parse', 'HEAD', cwd=source).stdout.strip()
+    command('git', 'commit', '-m', f'Publish tested TinyPPI {release}',
+            '-m', f'Source: IkHadHonger/script.tinyppi@{source_revision}', cwd=repository)
     command('git', 'push', 'origin', f'HEAD:{branch}', cwd=repository)
     remote = command('git', 'ls-remote', 'origin', f'refs/heads/{branch}', cwd=repository).stdout.split()[0]
     assert remote == command('git', 'rev-parse', 'HEAD', cwd=repository).stdout.strip()
