@@ -9,8 +9,8 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / 'sources/service.tailscale'
-VERSION = '1.102.4'
-SHA256 = '9dd1e6a592a014bbaea0103167ffe299adeda4ba14e078ce9c2895364f6c4c3f'
+VERSION = '1.104.5'
+SHA256 = 'e900b0e6e25023a1e504b2c237ce2a32ea0535e006f8c1a1097a490886493b6c'
 
 def fetch(url):
     with urllib.request.urlopen(url, timeout=120) as response:

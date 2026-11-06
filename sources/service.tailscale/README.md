@@ -5,16 +5,16 @@ CoreELEC/CoreELEC `75626f5a6e955cdee0aa1a4c97b0d8660e1ea1af`,
 `packages/addons/service/tailscale/source` (GPL-2.0-only, Team LibreELEC).
 Icon retained from the same upstream package. Changes by IkHadHonger.
 
-Bundled binaries: official Tailscale 1.102.4 ARM64, BSD-3-Clause.
+Bundled binaries: official Tailscale 1.104.5 ARM64, BSD-3-Clause.
 SHA-256 of the upstream archive:
-`9dd1e6a592a014bbaea0103167ffe299adeda4ba14e078ce9c2895364f6c4c3f`.
+`e900b0e6e25023a1e504b2c237ce2a32ea0535e006f8c1a1097a490886493b6c`.
 
-Addon version 21.0.12.100 is independent of the bundled Tailscale version.
+Addon version 21.0.13.100 is independent of the bundled Tailscale version.
 Prepared for future fresh installations; not an automatic Entware migration.
 Compatibility was inspected against avdvplus/CoreELEC commit
 `55282781e6cfd4886208efc0681ffe593be7d254` (21.3 avdvplus R10).
 That build supports systemd service addons. The same static ARM64 Tailscale
-1.102.4 binaries already work on the user's AM6B+ through Entware.
+Tailscale ARM64 binaries already work on the user's AM6B+ through Entware.
 Actual startup of this addon on CoreELEC 21.3 has not yet been tested.
 The existing ID `service.tailscale`, settings, socket, systemd unit and
 `/storage/.cache/tailscale/tailscaled.state` are retained. Do not uninstall

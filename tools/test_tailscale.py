@@ -44,7 +44,7 @@ class TailscaleTests(unittest.TestCase):
             self.assertEqual(result.stdout, 'true/false')
 
     def test_package(self):
-        package = ROOT / 'avdvplus/service.tailscale/service.tailscale-21.0.12.100.zip'
+        package = ROOT / 'avdvplus/service.tailscale/service.tailscale-21.0.13.100.zip'
         self.assertEqual(hashlib.sha256(package.read_bytes()).hexdigest(), package.with_suffix('.zip.sha256').read_text().split()[0])
         with zipfile.ZipFile(package) as archive:
             self.assertIsNone(archive.testzip())
@@ -65,11 +65,11 @@ class TailscaleTests(unittest.TestCase):
         self.assertEqual(hashlib.md5(catalog.read_bytes()).hexdigest(), catalog.with_suffix('.xml.md5').read_text().strip())
         entries = [a for a in ET.parse(catalog).getroot() if a.attrib['id'] == 'service.tailscale']
         self.assertEqual(len(entries), 1)
-        self.assertEqual(entries[0].attrib['version'], '21.0.12.100')
+        self.assertEqual(entries[0].attrib['version'], '21.0.13.100')
 
     def test_version_matches_channel(self):
         version = ET.parse(SOURCE / 'addon.xml').getroot().attrib['version']
-        self.assertEqual(version, '21.0.12.100')
+        self.assertEqual(version, '21.0.13.100')
         repository = ET.parse(ROOT / 'repository.ikhadhonger/addon.xml').getroot()
         dirs = repository.find('extension').findall('dir')
         omega = [d for d in dirs if d.attrib.get('minversion') == '21.0.0']
