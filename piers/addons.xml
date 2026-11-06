@@ -552,7 +552,7 @@ v2.22.4 (Jellyfin fork)
     </extension>
 </addon>
 
-<addon id="service.tailscale" name="Tailscale (IkHadHonger)" version="22.0.12.100" provider-name="Team LibreELEC, Team CoreELEC, IkHadHonger">
+<addon id="service.tailscale" name="Tailscale (IkHadHonger)" version="22.0.13.100" provider-name="Team LibreELEC, Team CoreELEC, IkHadHonger">
   <requires>
     <import addon="xbmc.python" version="3.0.0"/>
   </requires>
@@ -561,10 +561,10 @@ v2.22.4 (Jellyfin fork)
     <platform>linux</platform>
     <license>GPL-2.0-only; BSD-3-Clause (Tailscale binaries)</license>
     <source>https://github.com/IkHadHonger/repository.silvo/tree/cube-custom/sources/service.tailscale</source>
-    <summary lang="en">Tailscale 1.102.4 for CoreELEC 22 ARM64 with Kodi 22 settings support</summary>
-    <summary lang="nl_NL">Tailscale 1.102.4 voor CoreELEC 22 ARM64 met ondersteuning voor Kodi 22-instellingen</summary>
+    <summary lang="en">Tailscale 1.104.5 for CoreELEC 22 ARM64 with Kodi 22 settings support</summary>
+    <summary lang="nl_NL">Tailscale 1.104.5 voor CoreELEC 22 ARM64 met ondersteuning voor Kodi 22-instellingen</summary>
     <description lang="en">CoreELEC 22/Piers ARM64 only. Keeps the official addon ID, settings and tailnet state. Supports settings XML formats 1-4 and defaults to retaining CoreELEC DNS. Select this repository for updates to retain the fork fixes.</description>
-    <news>22.0.12.100: Correct addon version ordering against CoreELEC 22.0.12.9. Includes official Tailscale 1.102.4 ARM64, settings XML version 4 support, optional Tailscale DNS disabled by default, and persistent daemon state directory. Preserves existing login and configuration.</news>
+    <news>22.0.13.100: Updates the bundled official Tailscale ARM64 binaries to stable version 1.104.5. Retains settings XML version 4 support, optional Tailscale DNS disabled by default, persistent daemon state, and existing login and configuration.</news>
     <assets><icon>icon.png</icon></assets>
   </extension>
 </addon>

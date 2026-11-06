@@ -102,12 +102,12 @@ class RepoGenerator:
             return
 
         addons_xml_path = channel_path / "addons.xml"
-        addons_xml_path.write_text(addons_xml, encoding='utf-8')
+        addons_xml_path.write_bytes(addons_xml.encode('utf-8'))
         print(f"\n  Generated: {addons_xml_path}")
 
         md5_hash = hashlib.md5(addons_xml.encode('utf-8')).hexdigest()
         md5_path = channel_path / "addons.xml.md5"
-        md5_path.write_text(md5_hash, encoding='utf-8')
+        md5_path.write_bytes(md5_hash.encode('ascii'))
         print(f"  Generated: {md5_path}")
         print(f"  MD5: {md5_hash}")
         print(f"  Total addons: {addon_count}")
@@ -126,9 +126,10 @@ class RepoGenerator:
             entries: List of file/folder names (folders should end with /)
         """
         links = '\n'.join(f'<a href="{e}">{e}</a>' for e in sorted(entries))
+        display_path = directory.as_posix()
         html = f'''<!DOCTYPE html>
 <html>
-<head><title>Index of /{directory}</title></head>
+<head><title>Index of /{display_path}</title></head>
 <body>
 <!-- Hidden directory listing for Kodi file manager -->
 <div style="display:none">
@@ -138,7 +139,7 @@ class RepoGenerator:
 </html>
 '''
         index_path = directory / "index.html"
-        index_path.write_text(html, encoding='utf-8')
+        index_path.write_bytes(html.encode('utf-8'))
         print(f"  Generated: {index_path} ({len(entries)} entries)")
 
     def _generate_root_index(self, channels: list[str]) -> None:
@@ -181,7 +182,7 @@ class RepoGenerator:
         elif '<body' in content:
             content = re.sub(r'(<body[^>]*>)', rf'\1\n{hidden_block}', content, count=1)
 
-        index_path.write_text(content, encoding='utf-8')
+        index_path.write_bytes(content.encode('utf-8'))
         print(f"  Updated: {index_path} (injected {len(entries)} hidden links)")
 
         # Also generate index for repository.ikhadhonger folder
