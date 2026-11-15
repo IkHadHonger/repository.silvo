@@ -44,28 +44,34 @@ class TailscaleTests(unittest.TestCase):
             self.assertEqual(result.stdout, 'true/false')
 
     def test_package(self):
-        package = ROOT / 'piers/service.tailscale/service.tailscale-22.0.13.100.zip'
-        self.assertEqual(hashlib.sha256(package.read_bytes()).hexdigest(), package.with_suffix('.zip.sha256').read_text().split()[0])
-        with zipfile.ZipFile(package) as archive:
-            self.assertIsNone(archive.testzip())
-            for name in ('tailscale', 'tailscaled'):
-                info = archive.getinfo('service.tailscale/bin/' + name)
-                binary = archive.read(info)
-                self.assertEqual(binary[:5], b'\x7fELF\x02')
-                self.assertEqual(int.from_bytes(binary[18:20], 'little'), 183)
-                self.assertTrue(info.external_attr >> 16 & 0o111)
-            self.assertIn('service.tailscale/LICENSE.Tailscale', archive.namelist())
-            self.assertIn('service.tailscale/LICENSE.GPL-2.0', archive.namelist())
-            for name in ('addon.xml', 'bin/tailscale.start', 'bin/tailscale.settings', 'settings-default.xml'):
-                self.assertEqual(archive.read('service.tailscale/' + name), (SOURCE / name).read_bytes().replace(b'\r\n', b'\n'))
-            self.assertFalse(any('tailscaled.state' in n or 'addon_data' in n for n in archive.namelist()))
+        for channel, version in (('piers', '22.0.13.101'), ('avdvplus', '21.3.13.101')):
+            with self.subTest(channel=channel):
+                package = ROOT / channel / 'service.tailscale' / f'service.tailscale-{version}.zip'
+                self.assertEqual(hashlib.sha256(package.read_bytes()).hexdigest(), package.with_suffix('.zip.sha256').read_text().split()[0])
+                with zipfile.ZipFile(package) as archive:
+                    self.assertIsNone(archive.testzip())
+                    for name in ('tailscale', 'tailscaled'):
+                        info = archive.getinfo('service.tailscale/bin/' + name)
+                        binary = archive.read(info)
+                        self.assertEqual(binary[:5], b'\x7fELF\x02')
+                        self.assertEqual(int.from_bytes(binary[18:20], 'little'), 183)
+                        self.assertTrue(info.external_attr >> 16 & 0o111)
+                    self.assertIn('service.tailscale/LICENSE.Tailscale', archive.namelist())
+                    self.assertIn('service.tailscale/LICENSE.GPL-2.0', archive.namelist())
+                    for name in ('bin/tailscale.start', 'bin/tailscale.settings', 'settings-default.xml'):
+                        self.assertEqual(archive.read('service.tailscale/' + name), (SOURCE / name).read_bytes().replace(b'\r\n', b'\n'))
+                    package_xml = ET.fromstring(archive.read('service.tailscale/addon.xml'))
+                    self.assertEqual(package_xml.attrib['version'], version)
+                    self.assertFalse(any('tailscaled.state' in n or 'addon_data' in n for n in archive.namelist()))
 
     def test_catalog(self):
-        catalog = ROOT / 'piers/addons.xml'
-        self.assertEqual(hashlib.md5(catalog.read_bytes()).hexdigest(), catalog.with_suffix('.xml.md5').read_text().strip())
-        entries = [a for a in ET.parse(catalog).getroot() if a.attrib['id'] == 'service.tailscale']
-        self.assertEqual(len(entries), 1)
-        self.assertEqual(entries[0].attrib['version'], '22.0.13.100')
+        for channel, version in (('piers', '22.0.13.101'), ('avdvplus', '21.3.13.101')):
+            with self.subTest(channel=channel):
+                catalog = ROOT / channel / 'addons.xml'
+                self.assertEqual(hashlib.md5(catalog.read_bytes()).hexdigest(), catalog.with_suffix('.xml.md5').read_text().strip())
+                entries = [a for a in ET.parse(catalog).getroot() if a.attrib['id'] == 'service.tailscale']
+                self.assertEqual(len(entries), 1)
+                self.assertEqual(entries[0].attrib['version'], version)
 
     def test_version_exceeds_official(self):
         version = ET.parse(SOURCE / 'addon.xml').getroot().attrib['version']
