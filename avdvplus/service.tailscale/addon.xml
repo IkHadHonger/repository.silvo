@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<addon id="service.tailscale" name="Tailscale (IkHadHonger)" version="21.3.13.101" provider-name="Team LibreELEC, Team CoreELEC, IkHadHonger">
+  <requires>
+    <import addon="xbmc.python" version="3.0.0"/>
+  </requires>
+  <extension point="xbmc.service" library="default.py"/>
+  <extension point="xbmc.addon.metadata">
+    <platform>linux</platform>
+    <license>GPL-2.0-only; BSD-3-Clause (Tailscale binaries)</license>
+    <source>https://github.com/IkHadHonger/repository.silvo/tree/cube-custom/sources/service.tailscale</source>
+    <summary lang="en">Tailscale 1.104.7 for CoreELEC 21.3 ARM64 with Kodi 21.3 settings support</summary>
+    <summary lang="nl_NL">Tailscale 1.104.7 voor CoreELEC 21.3 ARM64 met ondersteuning voor Kodi 21.3-instellingen</summary>
+    <description lang="en">CoreELEC 21.3/AVDVPlus ARM64 only. Keeps the official addon ID, settings and tailnet state. Supports settings XML formats 1-4 and defaults to retaining CoreELEC DNS. Select this repository for updates to retain the fork fixes.</description>
+    <news>21.3.13.101: Updates the bundled official Tailscale ARM64 binaries to stable version 1.104.7. Retains settings XML version 4 support, optional Tailscale DNS disabled by default, persistent daemon state, and existing login and configuration.</news>
+    <assets><icon>icon.png</icon></assets>
+  </extension>
+</addon>
