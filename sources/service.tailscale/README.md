@@ -1,15 +1,15 @@
-# Tailscale for CoreELEC 22/Piers ARM64
+# Tailscale for CoreELEC 22/Piers and 21.3/AVDVPlus ARM64
 
 An addon fork, not a CoreELEC firmware fork. Upstream shell/Python/GUI code:
 CoreELEC/CoreELEC `75626f5a6e955cdee0aa1a4c97b0d8660e1ea1af`,
 `packages/addons/service/tailscale/source` (GPL-2.0-only, Team LibreELEC).
 Icon retained from the same upstream package. Changes by IkHadHonger.
 
-Bundled binaries: official Tailscale 1.104.5 ARM64, BSD-3-Clause.
+Bundled binaries: official Tailscale 1.104.7 ARM64, BSD-3-Clause.
 SHA-256 of the upstream archive:
-`e900b0e6e25023a1e504b2c237ce2a32ea0535e006f8c1a1097a490886493b6c`.
+`d6bed2720310b328b861f943d7b4016c5358a9bad60575eb51e8143b79068484`.
 
-Addon version 22.0.13.100 is independent of the bundled Tailscale version.
+Addon versions 22.0.13.101 (Piers) and 21.3.13.101 (AVDVPlus) are independent of the bundled Tailscale version.
 It follows the official 22.0.12 base and exceeds official revision 9.
 The original 22.0.0.100 was lower than 22.0.12.9; this release corrects that.
 The existing ID `service.tailscale`, settings, socket, systemd unit and
@@ -24,6 +24,8 @@ are retained. No external compatibility hook is needed.
 
 Build using `python tools/package_tailscale.py`. Tests:
 `python -m unittest discover -s tools -p test_tailscale.py`.
-The archive is only published in the Piers channel. Do not install on
-CoreELEC 21/ARM32 or other platforms. This release does not automatically
-download future binaries; upgrades require a reviewed, checksummed build.
+The package builder targets the Piers and AVDVPlus channels with separate Kodi
+metadata, using the same reviewed ARM64 service and binaries. Do not install on
+ARM32 or non-CoreELEC platforms. CoreELEC 21.3 runtime functionality must be
+confirmed on AVDVPlus hardware. This release does not automatically download
+future binaries; upgrades require a reviewed, checksummed build.
