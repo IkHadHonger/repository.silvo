@@ -9,8 +9,8 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / 'sources/service.tailscale'
-VERSION = '1.104.5'
-SHA256 = 'e900b0e6e25023a1e504b2c237ce2a32ea0535e006f8c1a1097a490886493b6c'
+VERSION = '1.104.7'
+SHA256 = 'd6bed2720310b328b861f943d7b4016c5358a9bad60575eb51e8143b79068484'
 
 def fetch(url):
     with urllib.request.urlopen(url, timeout=120) as response:
@@ -33,21 +33,38 @@ def main():
             if value[:5] != b'\x7fELF\x02' or int.from_bytes(value[18:20], 'little') != 183:
                 raise ValueError('Expected ARM64 ELF binary')
             files[f'bin/{name}'] = value
-    version = ET.fromstring(files['addon.xml']).attrib['version']
-    destination = ROOT / 'piers/service.tailscale'
-    destination.mkdir(exist_ok=True)
-    target = destination / f'service.tailscale-{version}.zip'
-    with zipfile.ZipFile(target, 'w', zipfile.ZIP_DEFLATED, compresslevel=9) as archive:
-        for name, value in sorted(files.items()):
-            info = zipfile.ZipInfo(f'service.tailscale/{name}', (2026, 10, 4, 0, 0, 0))
-            info.create_system = 3
-            info.external_attr = (0o100755 if name.startswith('bin/') else 0o100644) << 16
-            info.compress_type = zipfile.ZIP_DEFLATED
-            archive.writestr(info, value)
-    for name in ('addon.xml', 'icon.png'):
-        (destination / name).write_bytes(files[name])
-    (destination / (target.name + '.sha256')).write_text(hashlib.sha256(target.read_bytes()).hexdigest() + '  ' + target.name + '\n')
-    print(target)
+    for channel in ('piers', 'avdvplus'):
+        channel_files = dict(files)
+        if channel == 'avdvplus':
+            # Retain the customized service, settings, networking and persistent state.
+            # Only substitute the Kodi 21.3 metadata; binaries and service files stay identical.
+            xml = files['addon.xml'].decode('utf-8')
+            xml = xml.replace('22.0.13.101', '21.3.13.101')
+            xml = xml.replace('CoreELEC 22/Piers', 'CoreELEC 21.3/AVDVPlus')
+            xml = xml.replace('CoreELEC 22', 'CoreELEC 21.3')
+            xml = xml.replace('Kodi 22', 'Kodi 21.3')
+            channel_files['addon.xml'] = xml.encode('utf-8')
+        version = ET.fromstring(channel_files['addon.xml']).attrib['version']
+        destination = ROOT / channel / 'service.tailscale'
+        destination.mkdir(parents=True, exist_ok=True)
+        target = destination / f'service.tailscale-{version}.zip'
+        with zipfile.ZipFile(target, 'w', zipfile.ZIP_DEFLATED, compresslevel=9) as archive:
+            for name, value in sorted(channel_files.items()):
+                info = zipfile.ZipInfo(f'service.tailscale/{name}', (2026, 10, 4, 0, 0, 0))
+                info.create_system = 3
+                info.external_attr = (0o100755 if name.startswith('bin/') else 0o100644) << 16
+                info.compress_type = zipfile.ZIP_DEFLATED
+                archive.writestr(info, value)
+        with zipfile.ZipFile(target) as archive:
+            if archive.testzip() is not None:
+                raise ValueError(f'Corrupted ZIP for {channel}')
+            if archive.read('service.tailscale/addon.xml') != channel_files['addon.xml']:
+                raise ValueError(f'Incorrect Kodi metadata for {channel}')
+        for name in ('addon.xml', 'icon.png'):
+            (destination / name).write_bytes(channel_files[name])
+        (destination / (target.name + '.sha256')).write_text(
+            hashlib.sha256(target.read_bytes()).hexdigest() + '  ' + target.name + '\n')
+        print(target)
 
 if __name__ == '__main__':
     main()
