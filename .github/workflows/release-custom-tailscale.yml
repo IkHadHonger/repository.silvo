@@ -1,0 +1,55 @@
+name: Release customized Tailscale for Piers and AVDVPlus
+
+on:
+  push:
+    branches: [cube-custom]
+    paths:
+      - sources/service.tailscale/**
+      - tools/package_tailscale.py
+      - tools/test_tailscale.py
+      - .github/workflows/release-custom-tailscale.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: custom-tailscale-release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout original customized addon and repository
+        uses: actions/checkout@v4
+        with:
+          ref: cube-custom
+          persist-credentials: true
+
+      - name: Install settings XML test dependency
+        run: sudo apt-get update && sudo apt-get install -y xmlstarlet
+
+      - name: Build verified ARM64 Tailscale 1.104.7 packages
+        run: python3 tools/package_tailscale.py
+
+      - name: Generate Piers 22 and AVDVPlus 21.3 metadata
+        run: python3 _repo_generator.py piers avdvplus
+
+      - name: Run existing customization and packaging tests
+        run: python3 -m unittest discover -s tools -p test_tailscale.py -v
+
+      - name: Publish validated releases without removing other add-ons
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add piers/service.tailscale avdvplus/service.tailscale
+          git add piers/addons.xml piers/addons.xml.md5 avdvplus/addons.xml avdvplus/addons.xml.md5
+          git add piers/index.html avdvplus/index.html piers/service.tailscale/index.html avdvplus/service.tailscale/index.html
+          git diff --cached --check
+          if git diff --cached --quiet; then
+            echo "Both releases are already published"
+          else
+            git commit -m "Release customized Tailscale 1.104.7 for Piers and AVDVPlus"
+            git push origin HEAD:cube-custom
+          fi
